@@ -33,6 +33,7 @@ const InputBase : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
           ref={ref}
           {...rest}
           required
+          autoComplete="on" 
         />
         
         {!!errors && <FormErrorMessage>{errors.message}</FormErrorMessage>}

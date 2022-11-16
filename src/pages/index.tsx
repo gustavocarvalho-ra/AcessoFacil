@@ -2,13 +2,14 @@ import {
   Flex, IconButton, InputGroup, InputRightElement, Link, Stack, Text, 
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
+import { useContext, useState } from 'react';
 import { ButtonForm } from '../components/Form/button';
 import { Input } from '../components/Form/input';
 import { signInSchema } from '../validation/schema';
+import { AuthContext } from '../contexts/Auth/AuthContext';
 
 interface Inputs{
   email: string;
@@ -16,28 +17,31 @@ interface Inputs{
 }
 
 export function Login() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  
   const {
     register, handleSubmit, watch, formState: { errors }, 
   } = useForm<Inputs>({
     resolver: yupResolver(signInSchema),
   });
-  
-  const teste = watch();
 
-  const onSubmit: SubmitHandler<Inputs> = async () => {
-    // if (password && email) {
-    //   const isLogged = await auth.signIn(email, password);
-    //   if (isLogged) {
-    //     redirect('/teste');
-    //   } else {
-    //     console.log('deu ruim');
-    //   }
-    // }
-    redirect('/teste');
-    console.log(teste);
+  const email = watch('email');
+  const password = watch('password');
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (email && password) {
+      console.log('oi');
+      const isLogged = await auth.signIn(email, password);
+      if (isLogged) {
+        navigate('/private');
+        console.log(data);
+      } else {
+        console.log('deu ruim');
+      }
+    }
   };
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
   
   return (
     <Flex
@@ -47,8 +51,8 @@ export function Login() {
       bg="orange.600"
       justify="center"
       align="center"
-      
     >
+      
       <Flex
         as="form"
         onSubmit={handleSubmit(onSubmit)}
@@ -67,7 +71,7 @@ export function Login() {
             {...register('email')}
             errors={errors.email} 
           />
-
+          
           <InputGroup>
             <Input 
               type={show ? 'text' : 'password'} 
@@ -91,7 +95,8 @@ export function Login() {
         
         <ButtonForm text="ENTRAR" />
 
-        <Text>primeira vez? <Link href="/registration"> Cadastre-se</Link></Text>
+        <Text mt={1} fontSize={16}>primeira vez? <Link href="/registration" color="orange.800">Cadastre-se</Link>
+        </Text>
       </Flex>
     </Flex>
   );

@@ -1,20 +1,23 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'https://api.google.com',
 }); 
 
 export const useApi = () => ({
   validateToken: async (token:string) => {
-    const response = await api.post('/validate', { token });
-    return response.data;
+    return {
+      user: { id: 3, name: 'duda', email: 'duda@gmail.com' },
+    };
   },
-  signIn: async (email:string, password: string) => {
-    const response = await api.post('/signin', { email, password });
-    return response.data;
+  signIn: async (email: string, password: string) => {
+    return {
+      user: { id: 3, name: 'duda', email: 'duda@gmail.com' },
+      token: '123123123',
+    };
   },
   logOut: async () => {
-    const response = await api.post('/logout');
-    return response.data;
+    return { status: true };
   },
 });

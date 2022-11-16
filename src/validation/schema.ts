@@ -12,17 +12,18 @@ export const signInSchema = yup
 
 export const RegisterUserSchema = yup
   .object({
-    name: yup.string().required('Nome obrigatório').min(3, 'Mínimo 3 caracteres'),
+    name: yup.string().required('Nome obrigatório.').min(3, 'Mínimo 3 caracteres'),
     email: yup
       .string()
-      .email('Digite um email válido')
-      .required('Digite um email'),
+      .email('Digite um email válido.')
+      .required('Digite um email.'),
     password: yup
       .string()
-      .required('Digite sua senha')
+      .required('Digite sua senha.')
       .min(6, 'Mínimo 6 caracteres'),
     passwordConfirm: yup
       .string()
-      .oneOf([null, yup.ref('password')], 'As senhas devem ser iguais'),
+      .oneOf([null, yup.ref('password')], 'As senhas devem ser iguais.'),
+    permission: yup.string().required('A radio option is required'),
   })
   .required();
