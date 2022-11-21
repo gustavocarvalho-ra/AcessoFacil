@@ -1,4 +1,6 @@
-import { Heading, Image, Box } from '@chakra-ui/react';
+import {
+  Heading, Image, Box, 
+} from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 import logo from '../assets/logo.png';
 

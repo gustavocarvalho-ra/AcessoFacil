@@ -19,6 +19,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.39.3",
+    "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.3",
     "ts-prune": "^0.10.3",
     "yup": "^0.32.11"

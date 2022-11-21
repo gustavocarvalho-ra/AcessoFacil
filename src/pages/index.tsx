@@ -30,9 +30,9 @@ export function Login() {
 
   const email = watch('email');
   const password = watch('password');
+  
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (email && password) {
-      console.log('oi');
       const isLogged = await auth.signIn(email, password);
       if (isLogged) {
         navigate('/private');
