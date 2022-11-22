@@ -32,10 +32,10 @@ export const theme = extendTheme({
     global: {
       'html::-webkit-scrollbar': {
         bg: 'blackAlpha 300',
-        w: '2',
+        w: '8px',
       },
       'html::-webkit-scrollbar-thumb': {
-        background: 'red.700',
+        background: 'orange.700',
         borderRadius: '5px',
       },
       body: {

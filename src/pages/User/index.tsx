@@ -18,7 +18,7 @@ export function UserHome() {
     navigate('/');
   };
   const handleEditProfile = async () => {
-    navigate('/profile');
+    navigate('/userProfile');
   };
   return (
     <Flex align="center" flexDir="column">

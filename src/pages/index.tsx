@@ -2,10 +2,10 @@ import {
   Flex, IconButton, InputGroup, InputRightElement, Link, Stack, Text, 
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ButtonForm } from '../components/Form/button';
 import { Input } from '../components/Form/input';
 import { signInSchema } from '../validation/schema';
@@ -18,7 +18,6 @@ interface Inputs{
 
 export function Login() {
   const auth = useContext(AuthContext);
-  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   
@@ -28,6 +27,7 @@ export function Login() {
     resolver: yupResolver(signInSchema),
   });
 
+  const navigate = useNavigate();
   const email = watch('email');
   const password = watch('password');
   
@@ -35,8 +35,8 @@ export function Login() {
     if (email && password) {
       const isLogged = await auth.signIn(email, password);
       if (isLogged) {
-        navigate('/private');
         console.log(data);
+        navigate('/userHome');
       } else {
         console.log('deu ruim');
       }

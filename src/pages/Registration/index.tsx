@@ -6,6 +6,7 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { ButtonForm } from '../../components/Form/button';
 import { Input } from '../../components/Form/input';
 import { RadioInput } from '../../components/Form/inputRadio';
@@ -22,6 +23,10 @@ interface Inputs {
 export function Registration() {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  const navigate = useNavigate();
+  const handleRegistration = async () => {
+    navigate('/');
+  };
   
   const {
     register, handleSubmit, watch, formState: { errors }, 
@@ -30,6 +35,7 @@ export function Registration() {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    handleRegistration();
     console.log(data);
   };
   
