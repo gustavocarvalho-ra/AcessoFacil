@@ -5,18 +5,46 @@ import {
 import { VscReply } from 'react-icons/vsc';
 import { TbCameraPlus } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { InputEditable } from '../../components/User/editableInput';
 import { useUploadProfilePhoto } from '../../hooks/useUploadProfilePhoto';
 import { ButtonForm } from '../../components/Form/button';
 
+interface Inputs {
+  cpf: number;
+  rg: number;
+  dataEmail: string;
+  phoneNumber: number;
+  birthDate: number;
+  nationality: string;
+  cnh: number;
+  cep: number;
+  streetNumber: string;
+  civilStatus: string;
+}
+
 export function UserProfile() {
   const { selectedFile, preview, onSelectFile } = useUploadProfilePhoto();
   const navigate = useNavigate();
+
+  // const {
+  //   register, handleSubmit, watch, formState: { errors }, 
+  // } = useForm<Inputs>({
+  //   resolver: yupResolver(signInSchema),
+  // });
   return (
     <Flex align="center" flexDir="column">
 
-      <Flex w="100%" h="150px" align="center" onClick={() => navigate(-1)}>
-        <Link fontWeight="medium" fontSize={24} pl="126px">
+      <Flex w="100%" h="150px" align="center" onClick={() => navigate('/userHome')}>
+        <Link
+          fontWeight="medium"
+          fontSize={24}
+          pl="126px"
+          _hover={{
+            color: 'orange.900',
+          }}
+        >
           <Icon as={VscReply} mr="10px" fontSize={18} />
             voltar
         </Link>       

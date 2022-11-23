@@ -3,6 +3,7 @@ import { HeaderForm } from './components/headerForm';
 import { RequireAuth } from './contexts/Auth/RequireAuth';
 import { RequireAuthPermission } from './contexts/Auth/RequireAuthPermissions';
 import { Login } from './pages';
+import { Error404 } from './pages/Error/error';
 import { Registration } from './pages/Registration';
 import { RequesterHome } from './pages/Requester/home';
 import { Private } from './pages/teste/paginaprivada';
@@ -21,6 +22,7 @@ export default function RouterApp() {
         <Route path="/requesterHome" element={<RequireAuth><RequireAuthPermission permission="solicitante"><RequesterHome /></RequireAuthPermission></RequireAuth>} />
         <Route path="/userHome" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserHome /></RequireAuthPermission></RequireAuth>} />
         <Route path="/userProfile" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserProfile /></RequireAuthPermission></RequireAuth>} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
   );

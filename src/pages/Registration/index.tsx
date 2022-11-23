@@ -1,16 +1,19 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
 import {
   Flex, IconButton, InputGroup, InputRightElement, SimpleGrid, Stack, useCheckboxGroup, Text, Input as ChakraInput, Checkbox, Radio, RadioGroup,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ButtonForm } from '../../components/Form/button';
 import { Input } from '../../components/Form/input';
 import { RadioInput } from '../../components/Form/inputRadio';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { RegisterUserSchema } from '../../validation/schema';
+import { Error404 } from '../Error/error';
 
 interface Inputs {
   name: string;
@@ -21,22 +24,31 @@ interface Inputs {
 }
 
 export function Registration() {
+  const auth = useContext(AuthContext);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
-  const handleRegistration = async () => {
-    navigate('/');
-  };
-  
+
   const {
     register, handleSubmit, watch, formState: { errors }, 
   } = useForm<Inputs>({
     resolver: yupResolver(RegisterUserSchema),
   });
+  
+  const email = watch('email');
+  const name = watch('name');
+  const password = watch('password');
+  const permission = watch('permission');
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    handleRegistration();
-    console.log(data);
+    if (email && password && name && permission) {
+      console.log(data);
+      
+      const isRegistration = await auth.registration(email, password, name, permission);
+      navigate('/');
+    } else {
+      return <Error404 />;
+    }
   };
   
   return (

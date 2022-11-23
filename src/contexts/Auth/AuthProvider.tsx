@@ -12,7 +12,6 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
   useEffect(() => {
     const validateToken = async () => {
       const storageData = localStorage.getItem('authToken');
-      console.log(storageData);
       if (storageData) {
         const data = await api.validateToken(storageData);
         if (data.user) {
@@ -27,8 +26,16 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
     const data = await api.signIn(email, password);
     if (data.user && data.token) {
       setUser(data.user);
-      console.log(data);
-      
+      setToken(data.token);
+      return true;
+    }
+    return false;
+  };
+  
+  const registration = async (email: string, password: string, name: string, permission: string) => {
+    const data = await api.registration(email, password, name, permission);
+    if (data.user && data.token) {
+      setUser(data.user);
       setToken(data.token);
       return true;
     }
@@ -45,7 +52,7 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
   };
   return (
     <AuthContext.Provider value={{
-      user, signIn, signOut,
+      user, signIn, signOut, registration,
     }}>
       {children}
     </AuthContext.Provider>

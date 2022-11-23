@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import {
   Flex, IconButton, InputGroup, InputRightElement, Link, Stack, Text, 
 } from '@chakra-ui/react';
@@ -10,9 +11,10 @@ import { ButtonForm } from '../components/Form/button';
 import { Input } from '../components/Form/input';
 import { signInSchema } from '../validation/schema';
 import { AuthContext } from '../contexts/Auth/AuthContext';
+import { Error404 } from './Error/error';
 
 interface Inputs{
-  email: string;
+  userEmail: string;
   password: string;
 }
 
@@ -28,18 +30,19 @@ export function Login() {
   });
 
   const navigate = useNavigate();
-  const email = watch('email');
+  const email = watch('userEmail');
   const password = watch('password');
   
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async () => {
     if (email && password) {
       const isLogged = await auth.signIn(email, password);
       if (isLogged) {
-        console.log(data);
         navigate('/userHome');
       } else {
-        console.log('deu ruim');
+        navigate('/requesterHome');
       }
+    } else {
+      return <Error404 />;
     }
   };
   
@@ -68,8 +71,8 @@ export function Login() {
           <Input
             type="email"
             label="e-mail"
-            {...register('email')}
-            errors={errors.email} 
+            {...register('userEmail')}
+            errors={errors.userEmail} 
           />
           
           <InputGroup>
