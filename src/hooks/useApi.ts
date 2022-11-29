@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import axios from 'axios';
 
 export const api = axios.create({
@@ -9,23 +8,22 @@ export const api = axios.create({
 }); 
 
 export const useApi = () => ({
+
   validateToken: async (token:string) => {
-    // const response = await api.post('./validate', { token });
-    // return response.data;
-    return {
-      user: { name: 'duda', email: 'duda@gmail.com', permission: 'usuario' },
-    };
+    const response = await api.get('./user', {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+    return response.data;
   },
+
   signIn: async (email: string, password: string) => {
-    const response = await api.post('./user', { email, password });
+    const response = await api.put('./user/login', { email, password });
     return response.data;
   },
 
   registration: async (email: string, password: string, name: string, permission: string) => {
-    // return {
-    //   user: { name: 'duda', email: 'duda@gmail.com', permission: 'usuario' },
-    //   token: '123123123',
-    // };
     const response = await api.put('./user', {
       email, password, name, permission, 
     });

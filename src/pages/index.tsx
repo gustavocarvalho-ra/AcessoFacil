@@ -1,17 +1,17 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable consistent-return */
 import {
-  Flex, IconButton, InputGroup, InputRightElement, Link, Stack, Text, 
+  Flex, Link, Stack, Text, useToast, 
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ViewOffIcon, ViewIcon } from '@chakra-ui/icons';
-import { useContext, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ButtonForm } from '../components/Form/button';
 import { Input } from '../components/Form/input';
 import { signInSchema } from '../validation/schema';
 import { AuthContext } from '../contexts/Auth/AuthContext';
-import { Error404 } from './Error/error';
 
 interface Inputs{
   userEmail: string;
@@ -20,8 +20,8 @@ interface Inputs{
 
 export function Login() {
   const auth = useContext(AuthContext);
-  const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
+  const navigate = useNavigate();
+  const toast = useToast();
   
   const {
     register, handleSubmit, watch, formState: { errors }, 
@@ -29,20 +29,26 @@ export function Login() {
     resolver: yupResolver(signInSchema),
   });
 
-  const navigate = useNavigate();
   const email = watch('userEmail');
   const password = watch('password');
-  
+
+  useEffect(() => {
+    if (auth.user?.permission === 'usuario') { 
+      navigate('/userHome'); 
+    } if (auth.user?.permission === 'solicitante') {
+      navigate('/requesterHome');
+    }
+  }, [auth]);
+
   const onSubmit: SubmitHandler<Inputs> = async () => {
-    if (email && password) {
-      const isLogged = await auth.signIn(email, password);
-      if (isLogged) {
-        navigate('/userHome');
-      } else {
-        navigate('/requesterHome');
-      }
-    } else {
-      return <Error404 />;
+    try { await auth.signIn(email, password); } catch (err) {
+      toast({
+        title: 'Email ou senha incorretos.',
+        description: 'Certifique-se de que esteja cadastrado em nosso site ',
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+      });
     }
   };
   
@@ -50,50 +56,38 @@ export function Login() {
     <Flex
       as="section"
       w="100%"
-      h="100vh"
+      h="100%"
       bg="orange.600"
       justify="center"
       align="center"
+      minH="100vh"
     >
-      
       <Flex
         as="form"
         onSubmit={handleSubmit(onSubmit)}
         flexDir="column"
         align="center"
-        w="487px"
-        p="80px 70px"
+        w={['290px', '487px']}
+        p={['60px 50px', '80px 70px']}
         borderRadius={32}
         bg="gray.400"
+        m={['150px 0px 40px', 0]}
       >
 
-        <Stack spacing={10} mb="70px">
+        <Stack spacing={10} mb={['50px', '80px']}>
           <Input
             type="email"
             label="e-mail"
             {...register('userEmail')}
             errors={errors.userEmail} 
           />
-          
-          <InputGroup>
             <Input 
-              type={show ? 'text' : 'password'} 
+              type="password"
               label="password" 
               {...register('password')} 
               current-password="true" 
               errors={errors.password} 
             />
-            <InputRightElement width="4.5rem" mt="50px">
-              <IconButton
-                onClick={handleClick}
-                aria-label="view password"
-                mr={7}
-                bg="gray.200"
-              >
-                {show ? <ViewOffIcon w="35px" h="40px" /> : <ViewIcon w="35px" h="40px" />}
-              </IconButton>
-            </InputRightElement>
-          </InputGroup>
         </Stack>
         
         <ButtonForm text="ENTRAR" />

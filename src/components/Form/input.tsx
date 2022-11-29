@@ -18,14 +18,15 @@ const InputBase : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
     <FormControl isInvalid={!!errors}>
       <FormLabel
         fontSize={18}
-        w="347px"
+        w={['260px', '347px']}
         fontWeight="regular"
+        mr={0}
       >
         {label}:
         <ChakraInput
           type={type}
-          h="66px"
-          mt={1.5}
+          h={['55px', '66px']}
+          mt={[1.5]}
           variant="Outline" 
           fontSize={22}
           borderRadius={16}
