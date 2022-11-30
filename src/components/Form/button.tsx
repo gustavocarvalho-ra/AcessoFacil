@@ -1,4 +1,5 @@
 import { Button, Text } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 
 interface ButtonProps {
   text: string;
@@ -7,6 +8,14 @@ interface ButtonProps {
 export function ButtonForm({ text }: ButtonProps) {
   return (
     <Button
+      as={motion.button}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: '0.90',
+        delay: '0.5',
+        ease: '[0, 0.71, 0.2, 1.01]',
+      }}
       type="submit"
       w={['200px', '257px']}
       h={['55px', '68px']}

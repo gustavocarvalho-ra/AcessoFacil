@@ -1,8 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { AuthContext } from '../../contexts/Auth/AuthContext';
-import { DataProfileSchema } from '../../validation/schema';
+import { AuthContext } from '../contexts/Auth/AuthContext';
+import { DataProfileSchema } from '../validation/schema';
 
 interface Inputs {
   avatar: string;
@@ -23,6 +23,26 @@ export function useUpdate() {
   // const [results, setResults] = useState('');
   const auth = useContext(AuthContext);
 
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
+
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl: any = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e: any) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    setSelectedFile(e.target.files[0]);
+  };
+
   const {
     register, handleSubmit, formState: { errors }, 
   } = useForm<Inputs>({
@@ -36,6 +56,8 @@ export function useUpdate() {
         delete inputData[key];
       }
     });
+    console.log(selectedFile);
+    
     console.log(inputData);
     
     // try {
@@ -47,6 +69,6 @@ export function useUpdate() {
   };
 
   return {
-    handleSubmit, onSubmit, register, errors,
+    handleSubmit, onSubmit, register, errors, preview, onSelectFile, selectedFile,
   };
 }

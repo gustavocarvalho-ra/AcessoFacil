@@ -6,16 +6,14 @@ import { VscReply } from 'react-icons/vsc';
 import { TbCameraPlus } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import { InputEditable } from '../../components/User/InputProfile';
-import { useUploadProfilePhoto } from '../../hooks/useUploadProfilePhoto';
 import { ButtonForm } from '../../components/Form/button';
-import { useUpdate } from './useUpdate';
+import { useUpdate } from '../../hooks/useUpdate';
 
 export function UserProfile() {
-  const { selectedFile, preview, onSelectFile } = useUploadProfilePhoto();
   const navigate = useNavigate();
-
+  
   const {
-    handleSubmit, onSubmit, register, errors,
+    handleSubmit, onSubmit, register, errors, selectedFile, preview, onSelectFile,
   } = useUpdate();
 
   return (
@@ -39,16 +37,16 @@ export function UserProfile() {
         as="form"
         flexDir="column"
         align="center"
-        w="500px"
+        w="600px"
         h="1800px"
         onSubmit={handleSubmit(onSubmit)}
       >
         {selectedFile ? <Avatar width="270px" height="270px" src={preview} /> 
-          : <Avatar name="Eduarda Carvalho" src="https://bit.ly/broken-link" width="270px" height="270px" />}
+          : <Avatar src="https://bit.ly/broken-link" width="270px" height="270px" />}
+          
         <Input 
-          {...register('avatar')}
           type="file"
-          name="file" 
+          name="avatar" 
           id="file" 
           className="inputfile"
           accept=".jpg, .png, .jpeg"
@@ -62,7 +60,8 @@ export function UserProfile() {
           ml="260px"
           _hover={{
             color: 'orange.900',
-          }}>
+          }}
+        >
           <Icon as={TbCameraPlus} w="30px" h="30px" />
         </FormLabel>
 
@@ -135,7 +134,15 @@ export function UserProfile() {
             {...register('streetNumber')}
           />
           
-            <FormLabel fontWeight="light" fontSize={18} color="gray.900">Estado Civil:</FormLabel>
+            <FormLabel
+              w="100%"
+              fontWeight="regular"
+              fontSize={20}
+              color="gray.900"
+              textAlign="left"
+            >
+                Estado Civil:
+            </FormLabel>
             <Select
               {...register('civilStatus')}
               placeholder="Selecione a opção"

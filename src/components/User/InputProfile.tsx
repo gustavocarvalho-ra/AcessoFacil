@@ -20,12 +20,19 @@ const InputDataEditable : ForwardRefRenderFunction<HTMLInputElement, InputFormPr
   return (
     <FormControl isInvalid={!!errors}>
       
-        <FormLabel fontWeight="light" fontSize={18} color="gray.900">
+        <FormLabel
+          fontWeight="regular"
+          fontSize={20}
+          color="gray.500"
+          css={{
+            borderBottom: '2px solid #9D5C0D',
+          }}>
           {label}:
         <InputGroup>
           <ChakraInput
             type={type}
             w="448px"
+            color="gray.900"
             fontSize="26"
             variant="flushed"
             focusBorderColor="orange.900"
@@ -35,7 +42,18 @@ const InputDataEditable : ForwardRefRenderFunction<HTMLInputElement, InputFormPr
             {...rest} 
           />
           <InputRightElement
-            children={<EditIcon width="24px" height="24px" mt="10px" color="gray.700" />} 
+            children={
+              <EditIcon
+                width="24px"
+                height="24px"
+                mt="10px"
+                color="gray.500"
+                cursor="pointer"
+                _hover={{
+                  color: 'orange.900',
+                }} 
+              />
+            } 
           />
         </InputGroup>
         {!!errors && <FormErrorMessage>{errors.message}</FormErrorMessage>}

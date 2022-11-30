@@ -1,6 +1,6 @@
 import { ChevronDownIcon, EditIcon } from '@chakra-ui/icons';
 import {
-  Button, Flex, Menu, MenuButton, MenuList, Avatar, Heading, Center, Box,
+  Flex, Menu, MenuButton, MenuList, Avatar, Heading, Center, Box,
 } from '@chakra-ui/react';
 import { TbDoorExit } from 'react-icons/tb';
 import { MdQrCodeScanner } from 'react-icons/md';
@@ -26,15 +26,17 @@ export function UserHome() {
       <Flex as="header" align="center" justify="flex-end" pr="65px" h="110px" w="100%">
         <Menu>
           <MenuButton
-            as={Button}
-            leftIcon={<ChevronDownIcon w="25px" h="25px" />}
+            as={motion.button}
+            whileTap={{ scale: 0.97 }}
             _hover={{ bg: 'transparent' }}
             _active={{ bg: 'transparent' }}
           >
+            <ChevronDownIcon w="25px" h="25px" mt="14px" mr="12px" />
             <Avatar name="Eduarda Carvalho" src="https://bit.ly/broken-link" />
           </MenuButton>
 
           <MenuList
+            w="50px"
             borderRadius={16}
             display="flex"
             flexDir="column"
@@ -42,8 +44,16 @@ export function UserHome() {
             bg="gray.200"
             shadow="5px 4px 4px rgba(0, 0, 0, 0.25)"
           >
-            <MenuItemList icon={<EditIcon w="20px" h="20px" />} onClick={handleEditProfile} text="Perfil" />
-            <MenuItemList icon={<TbDoorExit fontSize={24} />} onClick={handleLogOut} text="Sair" />
+            <MenuItemList 
+              icon={<EditIcon w="20px" h="20px" />}
+              onClick={handleEditProfile}
+              text="Perfil" 
+            />
+            <MenuItemList 
+              icon={<TbDoorExit fontSize={24} />}
+              onClick={handleLogOut}
+              text="Sair" 
+            />
           </MenuList>
         </Menu>
       </Flex>
@@ -55,8 +65,9 @@ export function UserHome() {
         mt="240px"
         borderRadius={32}
         bg="orange.700"
-        shadow="3px 4px 4px rgba(0, 0, 0, 0.25)"
+        shadow="dark-lg"
         whileHover={{ scale: 1.1 }}
+        transition={{ type: 'spring', stiffness: '400s', damping: '10s' }}
       >
         <Box>
           <Heading
