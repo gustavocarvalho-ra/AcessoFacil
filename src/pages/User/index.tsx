@@ -1,6 +1,6 @@
 import { ChevronDownIcon, EditIcon } from '@chakra-ui/icons';
 import {
-  Button, Flex, Menu, MenuButton, MenuList, Avatar, Heading, Center,
+  Button, Flex, Menu, MenuButton, MenuList, Avatar, Heading, Center, Box,
 } from '@chakra-ui/react';
 import { TbDoorExit } from 'react-icons/tb';
 import { MdQrCodeScanner } from 'react-icons/md';
@@ -17,6 +17,7 @@ export function UserHome() {
     await auth.signOut();
     navigate('/');
   };
+  
   const handleEditProfile = async () => {
     navigate('/userProfile');
   };
@@ -49,24 +50,26 @@ export function UserHome() {
       
       <Center
         as={motion.button}
-        w="406px"
-        h="157px"
-        mt="270px"
+        w="358px"
+        h="289px"
+        mt="240px"
         borderRadius={32}
-        bg="gray.400"
+        bg="orange.700"
         shadow="3px 4px 4px rgba(0, 0, 0, 0.25)"
         whileHover={{ scale: 1.1 }}
       >
-        <Heading
-          fontWeight="bold"
-          fontSize={26}
-          pr="38px"
-          color="orange.900"
-        >
-          Ler QR Code
-        </Heading>
+        <Box>
+          <Heading
+            fontWeight="bold"
+            fontSize={26}
+            pb={3}
+          >
+            Ler QR Code
+          </Heading>
 
-        <MdQrCodeScanner fontSize={150} />
+          <MdQrCodeScanner fontSize={200} />
+        </Box>
+        
       </Center>  
     </Flex>
   );

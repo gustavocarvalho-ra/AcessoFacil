@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import * as yup from 'yup';
 
 export const signInSchema = yup
@@ -30,27 +31,46 @@ export const RegisterUserSchema = yup
 
 export const DataProfileSchema = yup
   .object({
+    name: yup.string(),
     cpf: yup
       .number()
+      .transform((value) => (isNaN(value) ? null : value))
+      .nullable()
       .min(11, 'Mínimo 11 caracteres'),
-    rg: yup.number().min(9, 'Mínimo 9 caracteres'),
+    rg: yup
+      .number()
+      .nullable()
+      .transform((value) => (isNaN(value) ? null : value))
+      .min(9, 'Mínimo 9 caracteres'),
     dataEmail: yup
       .string()
-      .email('Digite um email válido.'),
+      .nullable()
+      .notRequired(),
     phoneNumber: yup
-      .number()
-      .max(11, 'max 11 caracteres ex. 11 988508671'),
+      .string()
+      .notRequired()
+      .nullable()
+      .transform((value) => (isNaN(value) ? null : value)),
     birthDate: yup
-      .number(),  
+      .date()
+      .nullable()
+      .transform((value) => (isNaN(value) ? null : value)),  
     nationality: yup
-      .string(),
+      .string()
+      .nullable(),
     cnh: yup 
       .number()
+      .nullable()
+      .transform((value) => (isNaN(value) ? null : value))
       .min(10, 'Mínimo 10 caracteres'),
     cep: yup
-      .number()
-      .min(8, 'Mínimo 8 caracteres'), 
+      .string()
+      .notRequired()
+      .nullable()
+      .transform((value) => (isNaN(value) ? null : value)),
+      
     streetNumber: yup
-      .string(),   
+      .string()
+      .nullable(),  
   })
   .required();

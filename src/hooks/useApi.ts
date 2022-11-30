@@ -29,4 +29,14 @@ export const useApi = () => ({
     });
     return response.data;
   },
+
+  update: async (inputData: any, token: string | null) => {
+    const response = await api.post('./user', inputData, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+    return response.data;
+  },
+
 });

@@ -9,7 +9,6 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
   const [results, setResults] = useState('');
   const [user, setUser] = useState<User | null>(null);
   const api = useApi();
-  console.log(user);
   
   useEffect(() => {
     const validateToken = async () => {
@@ -45,6 +44,16 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
     return false;
   };
 
+  const update = async (inputData : any) => {
+    const storageData = localStorage.getItem('authToken');
+    const data = await api.update(inputData, storageData);
+    if (data.token) {
+      setToken(data.token);
+      return true;
+    }
+    return false;
+  };
+
   const signOut = async () => {
     setUser(null);
     setToken('');
@@ -55,7 +64,7 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
   };
   return (
     <AuthContext.Provider value={{
-      user, signIn, signOut, registration,
+      user, signIn, signOut, registration, update,
     }}>
       {children}
     </AuthContext.Provider>
