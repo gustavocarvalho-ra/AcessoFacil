@@ -1,5 +1,5 @@
 import {
-  Box, Flex, Heading, Icon, Link, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr, 
+  Box, Center, Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Td, Th, Thead, Tr, 
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 import {
@@ -17,14 +17,21 @@ export function RequesterHome() {
   };
   return (
     <Flex align="center" flexDir="column">
-      <Flex as="header" align="center" justify="flex-end" pr="65px" h="110px" w="100%">
+      <Flex as="header" align="center" justify="flex-end" pr={['30px', '65px']} h="110px" w="100%">
         
-        <Link fontWeight="medium" fontSize={24} color="orange.700" onClick={handleLogOut}>
-          <Icon as={TbDoorExit} color="gray.700" w="25px" h="25px" m={'-3px 8px'} />Sair
+        <Link
+          fontWeight="medium"
+          fontSize={24}
+          onClick={handleLogOut}
+          _hover={{
+            color: 'orange.900',
+          }}
+        >
+          <Icon as={TbDoorExit} w="25px" h="25px" m={'-3px 8px'} />Sair
         </Link>
       </Flex>
 
-      <Box w="800px" h="456" mt="60px">
+      <Box mt="60px">
         <Heading
           fontWeight="medium"
           fontSize={24}
@@ -35,7 +42,7 @@ export function RequesterHome() {
           Lista de QR Codes
         </Heading>
 
-        <TableContainer>
+        <TableContainer w={['290px', '500px', '800px']}>
           <Table variant="striped" colorScheme="orange">
            
             <Thead>
@@ -46,11 +53,11 @@ export function RequesterHome() {
                 <Th></Th>
               </Tr>
             </Thead>
-            <Tbody>
+            <Tbody css={{ overflowX: 'auto', overflowY: 'hidden' }}>
               <Tr>
                 <Td>Cadastro</Td>
                 <Td>CPF, RG, Data de Nascimento</Td>
-                <Td w="100px" textAlign="center">2</Td>
+                <Td textAlign="center">2</Td>
                 <Td w="100px">
                   <Link>
                     <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />
@@ -88,14 +95,14 @@ export function RequesterHome() {
                 </Td>
               </Tr>
             </Tbody>
-
-            <TableCaption mt="100px">
-              <Link>
-                <Icon as={TbSquarePlus} color="gray.700" w="25px" h="25px" mr="10px" />
-              </Link>
-            </TableCaption>
           </Table>
+
         </TableContainer>
+          <Center mt="100px" w="100%" h="auto">
+            <Link>
+              <Icon as={TbSquarePlus} color="gray.700" w="25px" h="25px" mr="10px" />
+            </Link>
+          </Center>
       </Box>
     </Flex>
   );

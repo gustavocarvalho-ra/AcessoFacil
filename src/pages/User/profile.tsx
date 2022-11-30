@@ -13,7 +13,7 @@ export function UserProfile() {
   const navigate = useNavigate();
   
   const {
-    handleSubmit, onSubmit, register, errors, selectedFile, preview, onSelectFile,
+    handleSubmit, onSubmit, register, errors, avatar, preview, onSelectFile,
   } = useUpdate();
 
   return (
@@ -41,8 +41,8 @@ export function UserProfile() {
         h={['1700px', '1800px']}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {selectedFile ? <Avatar width="270px" height="270px" src={preview} /> 
-          : <Avatar src="https://bit.ly/broken-link" width="270px" height="270px" />}
+        {avatar ? <Avatar width="270px" height="270px" src={preview} /> 
+          : <Avatar src="https://bit.ly/broken-link" bg="orange.600" width="270px" height="270px" />}
           
         <Input 
           type="file"
@@ -109,7 +109,7 @@ export function UserProfile() {
           <InputEditable
             label="Data de Nascimento"
             type="date" 
-            {...register('birthDate')}
+            // {...register('birthDate')}
           />
           <InputEditable
             label="Naturalidade"

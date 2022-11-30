@@ -54,6 +54,16 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
     return false;
   };
 
+  const updateUserPhoto = async (avatar : any) => {
+    const storageData = localStorage.getItem('authToken');
+    const data = await api.updateUserPhoto(avatar, storageData);
+    if (data.token) {
+      setToken(data.token);
+      return true;
+    }
+    return false;
+  };
+
   const signOut = async () => {
     setUser(null);
     setToken('');
@@ -64,7 +74,7 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
   };
   return (
     <AuthContext.Provider value={{
-      user, signIn, signOut, registration, update,
+      user, signIn, signOut, registration, update, updateUserPhoto,
     }}>
       {children}
     </AuthContext.Provider>

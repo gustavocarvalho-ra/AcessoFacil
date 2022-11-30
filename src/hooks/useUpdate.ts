@@ -5,7 +5,6 @@ import { AuthContext } from '../contexts/Auth/AuthContext';
 import { DataProfileSchema } from '../validation/schema';
 
 interface Inputs {
-  avatar: string;
   name: string | null;
   cpf: number | null;
   rg: number | null;
@@ -23,24 +22,24 @@ export function useUpdate() {
   // const [results, setResults] = useState('');
   const auth = useContext(AuthContext);
 
-  const [selectedFile, setSelectedFile] = useState();
+  const [avatar, setAvatar] = useState();
   const [preview, setPreview] = useState();
 
   useEffect(() => {
-    if (!selectedFile) {
+    if (!avatar) {
       setPreview(undefined);
       return;
     }
-    const objectUrl: any = URL.createObjectURL(selectedFile);
+    const objectUrl: any = URL.createObjectURL(avatar);
     setPreview(objectUrl);
-  }, [selectedFile]);
+  }, [avatar]);
 
   const onSelectFile = (e: any) => {
     if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
+      setAvatar(undefined);
       return;
     }
-    setSelectedFile(e.target.files[0]);
+    setAvatar(e.target.files[0]);
   };
 
   const {
@@ -56,19 +55,20 @@ export function useUpdate() {
         delete inputData[key];
       }
     });
-    console.log(selectedFile);
+    console.log(avatar.name);
     
     console.log(inputData);
     
-    // try {
-    //   await auth.update(inputData);
-    //   // setResults(data);
-    // } catch (error) {
-    //   console.log('Error trying to search for this category!');
-    // }
+    try {
+      await auth.update(inputData);
+      await auth.updateUserPhoto(avatar);
+      // setResults(data);
+    } catch (error) {
+      console.log('Error trying to search for this category!');
+    }
   };
 
   return {
-    handleSubmit, onSubmit, register, errors, preview, onSelectFile, selectedFile,
+    handleSubmit, onSubmit, register, errors, preview, onSelectFile, avatar,
   };
 }

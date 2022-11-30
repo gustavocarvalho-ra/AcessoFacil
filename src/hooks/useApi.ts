@@ -39,4 +39,13 @@ export const useApi = () => ({
     return response.data;
   },
 
+  updateUserPhoto: async (avatar: any, token: string | null) => {
+    const response = await api.patch('./user', avatar, {
+      headers: {
+        Authorization: `Bearer ${token}`, 
+      },
+    });
+    return response.data;
+  },
+
 });
