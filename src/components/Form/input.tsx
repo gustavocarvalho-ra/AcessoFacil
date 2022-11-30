@@ -19,7 +19,7 @@ const InputBase : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
       <FormLabel
         fontSize={18}
         w={['260px', '347px']}
-        fontWeight="bold"
+        fontWeight="regular"
         mr={0}
       >
         {label}:

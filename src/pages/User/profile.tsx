@@ -23,7 +23,7 @@ export function UserProfile() {
         <Link
           fontWeight="medium"
           fontSize={24}
-          pl="126px"
+          pl={['30px', '126px']}
           _hover={{
             color: 'orange.900',
           }}
@@ -37,8 +37,8 @@ export function UserProfile() {
         as="form"
         flexDir="column"
         align="center"
-        w="600px"
-        h="1800px"
+        w={['290px', '400px', '600px']}
+        h={['1700px', '1800px']}
         onSubmit={handleSubmit(onSubmit)}
       >
         {selectedFile ? <Avatar width="270px" height="270px" src={preview} /> 

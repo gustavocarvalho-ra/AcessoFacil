@@ -22,8 +22,8 @@ export function UserHome() {
     navigate('/userProfile');
   };
   return (
-    <Flex align="center" flexDir="column">
-      <Flex as="header" align="center" justify="flex-end" pr="65px" h="110px" w="100%">
+    <Flex align="center" flexDir="column" w="100%">
+      <Flex as="header" align="center" justify="flex-end" pr={['15px', '65px']} h="110px" w="100%">
         <Menu>
           <MenuButton
             as={motion.button}
@@ -57,31 +57,32 @@ export function UserHome() {
           </MenuList>
         </Menu>
       </Flex>
-      
-      <Center
-        as={motion.button}
-        w="358px"
-        h="289px"
-        mt="240px"
-        borderRadius={32}
-        bg="orange.700"
-        shadow="dark-lg"
-        whileHover={{ scale: 1.1 }}
-        transition={{ type: 'spring', stiffness: '400s', damping: '10s' }}
-      >
-        <Box>
-          <Heading
-            fontWeight="bold"
-            fontSize={26}
-            pb={3}
-          >
-            Ler QR Code
-          </Heading>
+      <Flex minH="80vh" h="100%" align="center">
+        <Center
+          as={motion.button}
+          w={['250px', '358px']}
+          h="289px"
+          borderRadius={32}
+          bg="orange.700"
+          shadow="dark-lg"
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: 'spring', stiffness: '400s', damping: '10s' }}
+        >
+          <Box>
+            <Heading
+              fontWeight="bold"
+              fontSize={26}
+              pb={3}
+            >
+              Ler QR Code
+            </Heading>
 
-          <MdQrCodeScanner fontSize={200} />
-        </Box>
-        
-      </Center>  
+            <MdQrCodeScanner fontSize={200} />
+          </Box>
+          
+        </Center>  
+      </Flex>
+      
     </Flex>
   );
 }
