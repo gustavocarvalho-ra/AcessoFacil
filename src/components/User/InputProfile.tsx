@@ -12,10 +12,11 @@ interface InputFormProps extends ChakraInputProps{
   type: string;
   mt?: string[] | string;
   errors?: FieldError;
+  value: string | number |undefined;
 }
 
 const InputDataEditable : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = ({
-  label, type, mt, errors, ...rest 
+  label, type, mt, errors, value, ...rest 
 }, ref) => {
   return (
     <FormControl isInvalid={!!errors}>
@@ -31,6 +32,7 @@ const InputDataEditable : ForwardRefRenderFunction<HTMLInputElement, InputFormPr
         <InputGroup>
           <ChakraInput
             type={type}
+            defaultValue={value}
             w="448px"
             color="gray.900"
             fontSize="26"
@@ -56,8 +58,9 @@ const InputDataEditable : ForwardRefRenderFunction<HTMLInputElement, InputFormPr
             } 
           />
         </InputGroup>
-        {!!errors && <FormErrorMessage>{errors.message}</FormErrorMessage>}
+        
         </FormLabel>
+        {!!errors && <FormErrorMessage>{errors.message}</FormErrorMessage>}
       
     </FormControl>
     

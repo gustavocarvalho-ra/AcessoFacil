@@ -2,6 +2,7 @@
 import {
   FormErrorMessage, FormLabel, Input as ChakraInput, InputProps as ChakraInputProps, FormControl,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { forwardRef, ForwardRefRenderFunction } from 'react';
 import { FieldError } from 'react-hook-form';
 
@@ -24,6 +25,14 @@ const InputBase : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
       >
         {label}:
         <ChakraInput
+          as={motion.input}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: '0.90',
+            delay: '0.5',
+            ease: '[0, 0.71, 0.2, 1.01]',
+          }}
           type={type}
           h={['55px', '66px']}
           mt={[1.5]}

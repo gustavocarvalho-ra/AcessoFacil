@@ -41,7 +41,9 @@ export function Login() {
   }, [auth]);
 
   const onSubmit: SubmitHandler<Inputs> = async () => {
-    try { await auth.signIn(email, password); } catch (err) {
+    try { 
+      await auth.signIn(email, password);
+    } catch (err) {
       toast({
         title: 'Email ou senha incorretos.',
         description: 'Certifique-se de que esteja cadastrado em nosso site ',

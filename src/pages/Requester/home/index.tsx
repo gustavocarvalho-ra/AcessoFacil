@@ -1,15 +1,22 @@
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable react/no-array-index-key */
 import {
-  Box, Center, Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Td, Th, Thead, Tr, 
+  Box,
+  Center,
+  Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, 
 } from '@chakra-ui/react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import {
-  TbDoorExit, TbSquarePlus, TbExternalLink, TbTrash, 
+  TbDoorExit, TbSquarePlus, 
 } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
+import { PropsID, TableQrCode } from '../../../components/Requester/table';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
 export function RequesterHome() {
   const auth = useContext(AuthContext);
+  const [teste, setTeste] = useState<PropsID[]>('');
+
   const navigate = useNavigate();
   const handleLogOut = async () => {
     await auth.signOut();
@@ -41,69 +48,37 @@ export function RequesterHome() {
         >
           Lista de QR Codes
         </Heading>
-
+            
         <TableContainer w={['290px', '500px', '800px']}>
           <Table variant="striped" colorScheme="orange">
-           
-            <Thead>
-              <Tr>
-                <Th>Nome</Th>
-                <Th>Dados</Th>
-                <Th>Respostas</Th>
-                <Th></Th>
-              </Tr>
-            </Thead>
-            <Tbody css={{ overflowX: 'auto', overflowY: 'hidden' }}>
-              <Tr>
-                <Td>Cadastro</Td>
-                <Td>CPF, RG, Data de Nascimento</Td>
-                <Td textAlign="center">2</Td>
-                <Td w="100px">
-                  <Link>
-                    <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />
-                  </Link>
-                  <Link>
-                    <Icon as={TbTrash} color="gray.700" w="20px" h="20px" />
-                  </Link>
-                </Td>
-               
-              </Tr>
-              <Tr>
-                <Td>Teste</Td>
-                <Td>E-mail, RG, CPF</Td>
-                <Td textAlign="center">10</Td>
-                <Td w="100px">
-                  <Link>
-                    <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />
-                  </Link>
-                  <Link>
-                    <Icon as={TbTrash} color="gray.700" w="20px" h="20px" />
-                  </Link>
-                </Td>
-              </Tr>
-              <Tr>
-                <Td>Teste</Td>
-                <Td>E-mail, Telefone, CPF</Td>
-                <Td textAlign="center">10</Td>
-                <Td w="100px">
-                  <Link>
-                    <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />
-                  </Link>
-                  <Link>
-                    <Icon as={TbTrash} color="gray.700" w="20px" h="20px" />
-                  </Link>
-                </Td>
-              </Tr>
-            </Tbody>
+          <Thead>
+            <Tr>
+              <Th>Nome</Th>
+              <Th>Dados</Th>
+              <Th>Respostas</Th>
+              <Th></Th>
+            </Tr>
+          </Thead>
+          <Tbody css={{ overflowX: 'auto', overflowY: 'hidden' }}>
+          {teste.map((teste) => (
+            <TableQrCode
+              id={'7'}
+              selectedTable={teste.id}
+              setSelectedTable={setTeste}
+            />
+          )) }
+            
+          </Tbody>
+          
           </Table>
-
         </TableContainer>
-          <Center mt="100px" w="100%" h="auto">
-            <Link>
-              <Icon as={TbSquarePlus} color="gray.700" w="25px" h="25px" mr="10px" />
-            </Link>
-          </Center>
+        <Center mt="100px" w="100%" h="auto">
+          <Link>
+            <Icon as={TbSquarePlus} color="gray.700" w="25px" h="25px" mr="10px" />
+          </Link>
+        </Center>
       </Box>
+      
     </Flex>
   );
 }

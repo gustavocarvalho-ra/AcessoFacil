@@ -30,47 +30,65 @@ export const RegisterUserSchema = yup
   .required();
 
 export const DataProfileSchema = yup
-  .object({
+  .object().shape({
     name: yup.string(),
     cpf: yup
-      .number()
-      .transform((value) => (isNaN(value) ? null : value))
-      .nullable()
-      .min(11, 'Mínimo 11 caracteres'),
+      .string()
+      .when('cpf', (val) => {
+        if (val?.length > 0) {
+          return yup.string()
+            .length(11, 'cpf requer 11 caracteres');
+        }
+        return yup.string().notRequired();
+      }),      
     rg: yup
-      .number()
-      .nullable()
-      .transform((value) => (isNaN(value) ? null : value))
-      .min(9, 'Mínimo 9 caracteres'),
+      .string()
+      .when('rg', (val) => {
+        if (val?.length > 0) {
+          return yup.string()
+            .length(9, 'rg requer 9 caracteres');
+        }
+        return yup.string().notRequired();
+      }),      
+      
     dataEmail: yup
       .string()
       .nullable()
       .notRequired(),
     phoneNumber: yup
       .string()
-      .notRequired()
-      .nullable()
-      .transform((value) => (isNaN(value) ? null : value)),
+      .notRequired(),
     birthDate: yup
-      .date()
+      .string()
       .nullable()
-      .transform((value) => (isNaN(value) ? null : value)),  
+      .notRequired(),
     nationality: yup
       .string()
       .nullable(),
     cnh: yup 
-      .number()
-      .nullable()
-      .transform((value) => (isNaN(value) ? null : value))
-      .min(10, 'Mínimo 10 caracteres'),
+      .string()
+      .when('cnh', (val) => {
+        if (val?.length > 0) {
+          return yup.string()
+            .length(10, 'cnh requer 10 caracteres');
+        }
+        return yup.string().notRequired();
+      }),      
     cep: yup
       .string()
-      .notRequired()
-      .nullable()
-      .transform((value) => (isNaN(value) ? null : value)),
-      
+      .when('cep', (val) => {
+        if (val?.length > 0) {
+          return yup.string()
+            .length(8, 'cnh requer 8 caracteres');
+        }
+        return yup.string().notRequired();
+      }), 
     streetNumber: yup
       .string()
       .nullable(),  
-  })
-  .required();
+  }, [
+    ['cpf', 'cpf'],
+    ['rg', 'rg'],
+    ['cnh', 'cnh'],
+    ['cep', 'cep'],
+  ]);

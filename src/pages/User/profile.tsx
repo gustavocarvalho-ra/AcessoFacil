@@ -8,13 +8,17 @@ import { useNavigate } from 'react-router-dom';
 import { InputEditable } from '../../components/User/InputProfile';
 import { ButtonForm } from '../../components/Form/button';
 import { useUpdate } from '../../hooks/useUpdate';
+import { useGetDataUser, useGetPhotoUser } from '../../hooks/useGetDataUser';
 
 export function UserProfile() {
   const navigate = useNavigate();
+  const { photo } = useGetPhotoUser();
   
   const {
-    handleSubmit, onSubmit, register, errors, avatar, preview, onSelectFile,
+    handleSubmit, onSubmit, register, errors, avatarUser, preview, onSelectFile,
   } = useUpdate();
+
+  const { userData } = useGetDataUser(); 
 
   return (
     <Flex align="center" flexDir="column">
@@ -41,8 +45,8 @@ export function UserProfile() {
         h={['1700px', '1800px']}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {avatar ? <Avatar width="270px" height="270px" src={preview} /> 
-          : <Avatar src="https://bit.ly/broken-link" bg="orange.600" width="270px" height="270px" />}
+        {avatarUser ? <Avatar width="270px" height="270px" src={preview} bg="orange.600" /> 
+          : <Avatar src={photo?.photo} bg="orange.600" width="270px" height="270px" />}
           
         <Input 
           type="file"
@@ -66,8 +70,9 @@ export function UserProfile() {
         </FormLabel>
 
         <InputEditable
+          value={userData?.user.name}
           label="Name"
-          type=""
+          type="text"
           {...register('name')}
           errors={errors.name}  
         />
@@ -83,52 +88,62 @@ export function UserProfile() {
 
         <VStack spacing="18px" w="100%" mb="61px">
           <InputEditable
+            value={userData?.user.cpf}
             label="CPF"
             type="number" 
             {...register('cpf')}
             errors={errors.cpf} 
           />
           <InputEditable
+            value={userData?.user.rg}
             label="RG"
             type="number" 
             {...register('rg')}
             errors={errors.rg} 
           />
           <InputEditable
+            value={userData?.user.dataEmail}
             label="E-mail"
             type="email" 
             {...register('dataEmail')}
             errors={errors.dataEmail} 
           />
           <InputEditable
+            value={userData?.user.phoneNumber}
             label="Telefone"
             type="tel"
             {...register('phoneNumber')}
             errors={errors.phoneNumber}  
           />
           <InputEditable
+            value={userData?.user.birthDate}
             label="Data de Nascimento"
-            type="date" 
-            // {...register('birthDate')}
+            type="date"
+            max="2030-12-31"
+            {...register('birthDate')}
           />
           <InputEditable
+            value={userData?.user.nationality}
             label="Naturalidade"
             type="text" 
             {...register('nationality')}
           />
           <InputEditable
+            value={userData?.user.cnh}
             label="N° CNH"
             type="number" 
             {...register('cnh')}
             errors={errors.cnh}
           />
           <InputEditable
+            value={userData?.user.cep}
             label="CEP"
             type="number" 
             {...register('cep')}
             errors={errors.cep}
           />
           <InputEditable
+            value={userData?.user.streetNumber}
             label="Rua N°"
             type="text" 
             {...register('streetNumber')}
@@ -145,6 +160,7 @@ export function UserProfile() {
             </FormLabel>
             <Select
               {...register('civilStatus')}
+              defaultValue={userData?.user.civilStatus}
               placeholder="Selecione a opção"
               variant="flushed"
               focusBorderColor="orange.900"

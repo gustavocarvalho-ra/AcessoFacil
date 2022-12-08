@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { MenuItemList } from '../../components/User/menuItem';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { useGetPhotoUser } from '../../hooks/useGetDataUser';
 
 export function UserHome() {
   const auth = useContext(AuthContext);
@@ -17,6 +18,8 @@ export function UserHome() {
     await auth.signOut();
     navigate('/');
   };
+
+  const { photo } = useGetPhotoUser();
   
   const handleEditProfile = async () => {
     navigate('/userProfile');
@@ -32,7 +35,9 @@ export function UserHome() {
             _active={{ bg: 'transparent' }}
           >
             <ChevronDownIcon w="25px" h="25px" mt="14px" mr="12px" />
-            <Avatar name="Eduarda Carvalho" src="https://bit.ly/broken-link" />
+
+            <Avatar src={photo?.photo} bg="orange.600" />
+
           </MenuButton>
 
           <MenuList

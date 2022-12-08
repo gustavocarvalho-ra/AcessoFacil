@@ -30,19 +30,10 @@ export const useApi = () => ({
     return response.data;
   },
 
-  update: async (inputData: any, token: string | null) => {
-    const response = await api.post('./user', inputData, {
+  getUserPhoto: async (token: string | null) => {
+    const response = await api.get('./user/avatar', {
       headers: {
-        Authorization: `Bearer ${token}`, 
-      },
-    });
-    return response.data;
-  },
-
-  updateUserPhoto: async (avatar: any, token: string | null) => {
-    const response = await api.patch('./user', avatar, {
-      headers: {
-        Authorization: `Bearer ${token}`, 
+        Authorization: `Bearer ${token}`,
       },
     });
     return response.data;

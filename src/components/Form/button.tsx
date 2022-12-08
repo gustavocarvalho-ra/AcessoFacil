@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import { Button, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
