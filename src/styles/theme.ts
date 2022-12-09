@@ -31,7 +31,7 @@ export const theme = extendTheme({
   styles: {
     global: {
       'html::-webkit-scrollbar': {
-        bg: 'blackAlpha 300',
+        bg: 'blackAlpha.300',
         w: '8px',
       },
       'html::-webkit-scrollbar-thumb': {

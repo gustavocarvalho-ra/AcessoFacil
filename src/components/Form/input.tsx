@@ -16,12 +16,13 @@ const InputBase : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
   type, label, errors, ...rest 
 }, ref) => {
   return (
-    <FormControl isInvalid={!!errors}>
+    <FormControl isInvalid={!!errors} w={['260px', '347px']}>
       <FormLabel
         fontSize={18}
         w={['260px', '347px']}
         fontWeight="regular"
         mr={0}
+        display="inline"
       >
         {label}:
         <ChakraInput
@@ -34,6 +35,7 @@ const InputBase : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
             ease: '[0, 0.71, 0.2, 1.01]',
           }}
           type={type}
+          w={['260px', '347px']}
           h={['55px', '66px']}
           mt={[1.5]}
           variant="Outline" 

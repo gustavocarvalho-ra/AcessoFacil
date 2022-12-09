@@ -10,6 +10,7 @@ export function ButtonForm({ text }: ButtonProps) {
   return (
     <Button
       as={motion.button}
+      whileHover={{ scale: 1.050 }}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{

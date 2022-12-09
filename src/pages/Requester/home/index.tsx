@@ -1,27 +1,31 @@
-/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable react/no-unstable-nested-components */
+
 /* eslint-disable react/no-array-index-key */
 import {
   Box,
   Center,
-  Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, 
+  Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure,
 } from '@chakra-ui/react';
-import { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {
   TbDoorExit, TbSquarePlus, 
 } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
-import { PropsID, TableQrCode } from '../../../components/Requester/table';
+import { ModalQrCode } from '../../../components/Requester/modal';
+import { TableQrCode } from '../../../components/Requester/table';
 import { AuthContext } from '../../../contexts/Auth/AuthContext';
 
 export function RequesterHome() {
   const auth = useContext(AuthContext);
-  const [teste, setTeste] = useState<PropsID[]>('');
+  // const [teste, setTeste] = useState<PropsID[]>('');
+  const { onOpen, onClose, isOpen } = useDisclosure();
 
   const navigate = useNavigate();
   const handleLogOut = async () => {
     await auth.signOut();
     navigate('/');
   };
+
   return (
     <Flex align="center" flexDir="column">
       <Flex as="header" align="center" justify="flex-end" pr={['30px', '65px']} h="110px" w="100%">
@@ -49,7 +53,20 @@ export function RequesterHome() {
           Lista de QR Codes
         </Heading>
             
-        <TableContainer w={['290px', '500px', '800px']}>
+        <TableContainer
+          w={['290px', '500px', '800px']}
+          css={{
+            '&::-webkit-scrollbar': {
+              background: 'rgba(0, 0, 0, 0.16)',
+              width: '5px',
+              height: '10px',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: '#CE9461',
+              borderRadius: '16px',
+            }, 
+          }}
+          >
           <Table variant="striped" colorScheme="orange">
           <Thead>
             <Tr>
@@ -59,24 +76,18 @@ export function RequesterHome() {
               <Th></Th>
             </Tr>
           </Thead>
-          <Tbody css={{ overflowX: 'auto', overflowY: 'hidden' }}>
-          {teste.map((teste) => (
-            <TableQrCode
-              id={'7'}
-              selectedTable={teste.id}
-              setSelectedTable={setTeste}
-            />
-          )) }
-            
+          <Tbody>
+            <TableQrCode />
           </Tbody>
           
           </Table>
         </TableContainer>
         <Center mt="100px" w="100%" h="auto">
-          <Link>
+          <Link onClick={onOpen}>
             <Icon as={TbSquarePlus} color="gray.700" w="25px" h="25px" mr="10px" />
           </Link>
         </Center>
+       <ModalQrCode isOpen={isOpen} onClose={onClose} />
       </Box>
       
     </Flex>
