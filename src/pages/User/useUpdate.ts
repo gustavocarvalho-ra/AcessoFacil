@@ -6,8 +6,8 @@ import {
   useEffect, useState, 
 } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { DataProfileSchema } from '../validation/schema';
-import { api } from './useApi';
+import { DataProfileSchema } from '../../validation/schema';
+import { api } from '../../hooks/useApi';
 
 interface Inputs {
   name: string | null;

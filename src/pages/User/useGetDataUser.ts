@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { useEffect, useState } from 'react';
-import { api } from './useApi';
+import { api } from '../../hooks/useApi';
 
 interface PropsPhoto{
   photo: string;

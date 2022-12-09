@@ -3,7 +3,7 @@ import {
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Button, Stack, Heading, ModalFooter,
 } from '@chakra-ui/react';
 import { MdOutlineLibraryAdd } from 'react-icons/md';
-import { useSendData } from '../../hooks/useQrCode';
+import { useSendData } from '../../pages/Requester/useQrCode';
 import { ButtonForm } from '../Form/button';
 import { Input } from '../Form/input';
 import { SelectQrCode } from './selectQrCode';

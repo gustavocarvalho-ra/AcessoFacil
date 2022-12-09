@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { forwardRef, ForwardRefRenderFunction } from 'react';
-import { PropsId } from '../../hooks/useQrCode';
+import { PropsId } from '../../pages/Requester/useQrCode';
 
 interface SelectQrCodeProps extends SelectProps {
   id: string;

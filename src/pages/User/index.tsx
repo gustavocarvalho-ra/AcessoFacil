@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { MenuItemList } from '../../components/User/menuItem';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
-import { useGetPhotoUser } from '../../hooks/useGetDataUser';
+import { useGetPhotoUser } from './useGetDataUser';
 
 export function UserHome() {
   const auth = useContext(AuthContext);

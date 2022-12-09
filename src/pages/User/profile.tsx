@@ -7,8 +7,8 @@ import { TbCameraPlus } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import { InputEditable } from '../../components/User/InputProfile';
 import { ButtonForm } from '../../components/Form/button';
-import { useUpdate } from '../../hooks/useUpdate';
-import { useGetDataUser, useGetPhotoUser } from '../../hooks/useGetDataUser';
+import { useUpdate } from './useUpdate';
+import { useGetDataUser, useGetPhotoUser } from './useGetDataUser';
 
 export function UserProfile() {
   const navigate = useNavigate();
