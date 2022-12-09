@@ -47,21 +47,12 @@ export function AuthProvider({ children }: { children: JSX.Element}) {
     return false;
   };
 
-  const getUserPhoto = async () => {
-    const data = await api.getUserPhoto(storageData);
-    if (data.token) {
-      setToken(data.token);
-      return true;
-    }
-    return false;
-  };
-
   const setToken = (token: string) => {
     localStorage.setItem('authToken', token);
   };
   return (
     <AuthContext.Provider value={{
-      user, signIn, signOut, registration, getUserPhoto,
+      user, signIn, signOut, registration,
     }}>
       {children}
     </AuthContext.Provider>

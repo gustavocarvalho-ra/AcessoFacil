@@ -55,17 +55,29 @@ export function useUpdate() {
   const dataPhoto = new FormData();
   dataPhoto.append('avatar', avatarUser);
 
-  const FilePhoto = async () => {
-    if (dataPhoto) {
-      const response = await api.patch('./user/avatar', dataPhoto, {
-        headers: {
-          Authorization: `Bearer ${storageData}`,
-        },
+  async function FilePhoto() {
+    try {
+      if (dataPhoto) {
+        const response = await api.patch('./user/avatar', dataPhoto, {
+          headers: {
+            Authorization: `Bearer ${storageData}`,
+          },
+        });
+        return response.data;
+      }
+    } catch (err: any) {
+      const messageError = err.request.response;
+      
+      toast({
+        title: messageError.slice(12, 35),
+        variant: 'left-accent',
+        position: 'bottom-right',
+        status: 'warning',
+        duration: 1700,
+        isClosable: true,
       });
-      return response.data;
     }
-    return false;
-  };
+  }
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const inputData : any = data;
@@ -77,6 +89,7 @@ export function useUpdate() {
 
     try {
       FilePhoto();
+
       const response = await api.post('./user', inputData, {
         headers: {
           Authorization: `Bearer ${storageData}`, 
@@ -89,7 +102,7 @@ export function useUpdate() {
         variant: 'left-accent',
         position: 'bottom-right',
         status: 'success',
-        duration: 4000,
+        duration: 1700,
         isClosable: true,
       });
       return response.data;
@@ -99,7 +112,7 @@ export function useUpdate() {
         variant: 'left-accent',
         position: 'bottom-right',
         status: 'error',
-        duration: 4000,
+        duration: 1700,
         isClosable: true,
       });
       console.log('Error trying to search for this category!');

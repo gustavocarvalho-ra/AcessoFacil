@@ -30,13 +30,4 @@ export const useApi = () => ({
     return response.data;
   },
 
-  getUserPhoto: async (token: string | null) => {
-    const response = await api.get('./user/avatar', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
-  },
-
 });
