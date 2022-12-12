@@ -8,6 +8,7 @@ import { Registration } from './pages/Registration';
 import { RequesterHome } from './pages/Requester/home';
 import { Private } from './pages/teste/paginaprivada';
 import { UserHome } from './pages/User';
+import { DataQrCode } from './pages/User/dataQrCode';
 import { UserProfile } from './pages/User/profile';
 
 export default function RouterApp() {
@@ -21,7 +22,8 @@ export default function RouterApp() {
       </Route>
         <Route path="/requesterHome" element={<RequireAuth><RequireAuthPermission permission="solicitante"><RequesterHome /></RequireAuthPermission></RequireAuth>} />
         <Route path="/userHome" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserHome /></RequireAuthPermission></RequireAuth>} />
-        <Route path="/userProfile" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserProfile /></RequireAuthPermission></RequireAuth>} />
+        <Route path="/userHome/userProfile" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserProfile /></RequireAuthPermission></RequireAuth>} />
+        <Route path="/userHome/dataQrCode" element={<RequireAuth><RequireAuthPermission permission="usuario"><DataQrCode /></RequireAuthPermission></RequireAuth>} />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>

@@ -1,17 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
-  Flex, Link, Icon, Avatar, Input, FormLabel, Heading, VStack, Select,
+  Flex, Icon, Avatar, Input, FormLabel, Heading, VStack, Select,
 } from '@chakra-ui/react';
-import { VscReply } from 'react-icons/vsc';
 import { TbCameraPlus } from 'react-icons/tb';
-import { useNavigate } from 'react-router-dom';
 import { InputEditable } from '../../components/User/InputProfile';
 import { ButtonForm } from '../../components/Form/button';
 import { useUpdate } from './useUpdate';
 import { useGetDataUser, useGetPhotoUser } from './useGetDataUser';
+import { HeaderLinkBack } from '../../components/headerLinkBack';
 
 export function UserProfile() {
-  const navigate = useNavigate();
   const { photo } = useGetPhotoUser();
   
   const {
@@ -23,19 +21,7 @@ export function UserProfile() {
   return (
     <Flex align="center" flexDir="column">
 
-      <Flex w="100%" h="150px" align="center" onClick={() => navigate('/userHome')}>
-        <Link
-          fontWeight="medium"
-          fontSize={24}
-          pl={['30px', '126px']}
-          _hover={{
-            color: 'orange.900',
-          }}
-        >
-          <Icon as={VscReply} mr="10px" fontSize={18} />
-            voltar
-        </Link>       
-      </Flex>
+      <HeaderLinkBack route="/userHome" />
 
       <Flex
         as="form"

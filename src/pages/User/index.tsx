@@ -22,7 +22,7 @@ export function UserHome() {
   const { photo } = useGetPhotoUser();
   
   const handleEditProfile = async () => {
-    navigate('/userProfile');
+    navigate('userProfile');
   };
   return (
     <Flex align="center" flexDir="column" w="100%">

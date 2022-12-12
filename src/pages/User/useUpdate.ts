@@ -97,14 +97,18 @@ export function useUpdate() {
         isClosable: true,
       });
       return response.data;
-    } catch (error) {
+    } catch (err: any) {
+      const messageError = err.request.response;
+      console.log(messageError);
+      
       toast({
-        title: 'Erro ao atualizar dados, tente novamente mais tarde!',
+        title: messageError.slice(1, 30),
         variant: 'left-accent',
         position: 'bottom-right',
         status: 'error',
         duration: 1700,
         isClosable: true,
+
       });
       console.log('Error trying to search for this category!');
     }
