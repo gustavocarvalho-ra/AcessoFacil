@@ -66,16 +66,7 @@ export function useUpdate() {
         return response.data;
       }
     } catch (err: any) {
-      const messageError = err.request.response;
-      
-      toast({
-        title: messageError.slice(12, 35),
-        variant: 'left-accent',
-        position: 'bottom-right',
-        status: 'warning',
-        duration: 1700,
-        isClosable: true,
-      });
+      console.log('Error trying to search for this category!');
     }
   }
 
