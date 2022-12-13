@@ -17,6 +17,7 @@ export function UserProfile() {
   } = useUpdate();
 
   const { userData } = useGetDataUser(); 
+  console.log(userData?.user.civilStatus);
 
   return (
     <Flex align="center" flexDir="column">
@@ -146,8 +147,7 @@ export function UserProfile() {
             </FormLabel>
             <Select
               {...register('civilStatus')}
-              defaultValue={userData?.user.civilStatus}
-              placeholder="Selecione a opção"
+              placeholder="Selecione uma opção"
               variant="flushed"
               focusBorderColor="orange.900"
               fontSize="25"
@@ -155,6 +155,7 @@ export function UserProfile() {
                 borderBottom: '2px solid #9D5C0D',
               }}
             >
+              <option value={userData?.user.civilStatus} disabled selected>{userData?.user.civilStatus}</option>
               <option value="solteira(o)">Solteira(o)</option>
               <option value="casada(o)">Casada(o)</option>
               <option value="divorciada(o)">Divorciada(o)</option>

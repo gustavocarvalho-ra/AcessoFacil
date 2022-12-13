@@ -34,6 +34,7 @@ export function useGetPhotoUser() {
 
 interface PropsDataUser{
   user:{
+    id: number;
     name: string;
     cpf: number;
     rg: number;

@@ -11,9 +11,9 @@ import {
   TbDoorExit, TbSquarePlus, 
 } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
-import { ModalQrCode } from '../../../components/Requester/modal';
-import { TableQrCode } from '../../../components/Requester/table';
-import { AuthContext } from '../../../contexts/Auth/AuthContext';
+import { ModalQrCode } from '../../components/Requester/modal';
+import { TableQrCode } from '../../components/Requester/table';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 export function RequesterHome() {
   const auth = useContext(AuthContext);

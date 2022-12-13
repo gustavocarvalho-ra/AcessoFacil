@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useGetDataUser } from '../User/useGetDataUser';
 
 export interface PropsId {
   id: string;
@@ -16,6 +17,8 @@ export function useSendData() {
   const documentsValues: String[] = [];
   selectedDocument.forEach((document) => documentsValues.push(document.value));
  
+  const { userData } = useGetDataUser();
+
   function handleAddSelect() {
     setSelectedDocument([...selectedDocument, { id: String(Math.random()), value: 'default' }]);
   }
@@ -26,7 +29,10 @@ export function useSendData() {
 
   const onSubmit:SubmitHandler<InputProps> = async (nameQrCode) => {
     try { 
-      const newQrCode = { documentsValues, nameQrCode };
+      const id = userData?.user.id;
+      const QrCode = { nameQrCode, id };
+      
+      const newQrCode = { documentsValues, QrCode };
       console.log(newQrCode);
     } catch (err) {
       console.log('deu ruim');

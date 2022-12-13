@@ -1,7 +1,8 @@
+/* eslint-disable consistent-return */
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 
-export function Test() {
+export function ScannerQrCode() {
   const [data, setData] = useState('No result');
 
   return (
@@ -10,10 +11,9 @@ export function Test() {
         onResult={(result, error) => {
           if (result) {
             setData(result?.text);
-          }
-
+          } 
           if (error) {
-            console.info(error);
+            return false;
           }
         }}
         constraints={{ facingMode: 'environment' }}
@@ -21,6 +21,5 @@ export function Test() {
       />
       <p>{data}</p>
     </>
-
-  ); 
+  );
 }

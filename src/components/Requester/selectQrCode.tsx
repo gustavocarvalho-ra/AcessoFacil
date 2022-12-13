@@ -69,14 +69,14 @@ const SelectComponent : ForwardRefRenderFunction<HTMLSelectElement, SelectQrCode
         <option value="name">Nome</option>
         <option value="cpf">CPF</option>
         <option value="rg">RG</option>
-        <option value="dataEmail">E-mail</option>
+        <option value="dataEmail">E-mail</option> 
         <option value="phoneNumber">Telefone</option>
         <option value="birthDate">Data de Nascimento</option>
         <option value="nationality">Nacionalidade</option>
         <option value="cnh">CNH</option>
         <option value="cep">CEP</option>
         <option value="streetNumber">Rua n°</option>
-        <option value="civilStatus">Estatos Civil</option>
+        <option value="civilStatus">Estado Civil</option>
       </Select>
 
       <Button 

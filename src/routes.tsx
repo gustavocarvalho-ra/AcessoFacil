@@ -5,7 +5,7 @@ import { RequireAuthPermission } from './contexts/Auth/RequireAuthPermissions';
 import { Login } from './pages';
 import { Error404 } from './pages/Error/error';
 import { Registration } from './pages/Registration';
-import { RequesterHome } from './pages/Requester/home';
+import { RequesterHome } from './pages/Requester';
 import { Private } from './pages/teste/paginaprivada';
 import { UserHome } from './pages/User';
 import { DataQrCode } from './pages/User/dataQrCode';

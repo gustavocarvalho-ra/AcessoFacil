@@ -10,7 +10,7 @@ import { useContext } from 'react';
 import { MenuItemList } from '../../components/User/menuItem';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useGetPhotoUser } from './useGetDataUser';
-import { Test } from '../../components/User/scannerQrCode';
+import { ScannerQrCode } from '../../components/User/scannerQrCode';
 
 export function UserHome() {
   const auth = useContext(AuthContext);
@@ -66,7 +66,6 @@ export function UserHome() {
           </MenuList>
         </Menu>
       </Flex>
-
       <Flex minH="80vh" h="100%" align="center">
         <Center
           onClick={onOpen}
@@ -91,19 +90,19 @@ export function UserHome() {
             <MdQrCodeScanner fontSize={200} />
            
           </Box>
-        </Center>  
+        </Center>
 
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
           <ModalContent borderRadius={16} w={['280px', '100%']}>
-            <ModalHeader textAlign="center" mt="40px">Aponte para o Qr Code</ModalHeader>
+            <ModalHeader textAlign="center" mt="40px">Aponte a câmera para o Qr Code</ModalHeader>
             <Flex alignItems="center" flexDir="column">
               <div style={{ width: '90%', background: '#9D5C0D', height: '1px' }} />
             </Flex>
       
             <ModalCloseButton _hover={{ color: 'orange' }} />
             <ModalBody>
-              <Test />
+              <ScannerQrCode />
             </ModalBody>
 
           </ModalContent>
