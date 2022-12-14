@@ -47,9 +47,11 @@ export function Registration() {
         isClosable: true,
       });
       navigate('/');
-    } catch (err) {
+    } catch (err: any) {
+      console.log();
+      
       toast({
-        title: 'O mesmo email já foi cadastrado como usuario!',
+        title: err.request.response,
         status: 'error',
         duration: 4000,
         isClosable: true,
