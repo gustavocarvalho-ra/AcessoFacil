@@ -40,6 +40,12 @@ export function Registration() {
   const onSubmit: SubmitHandler<Inputs> = async () => {
     try {
       await auth.registration(email, password, name, permission);
+      toast({
+        description: 'Conta criada com sucesso',
+        status: 'success',
+        duration: 1700,
+        isClosable: true,
+      });
       navigate('/');
     } catch (err) {
       toast({

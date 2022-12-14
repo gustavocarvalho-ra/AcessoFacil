@@ -19,7 +19,6 @@ export const theme = extendTheme({
       800: '#E26A2C',
       700: '#CE9461',
       600: 'linear-gradient(to top, #ce9461, #c2864d, #b6773a, #aa6a25, #9d5c0d);',
-      500: '#FF9F45',
       400: '#E0D8B0',
     },
   },
