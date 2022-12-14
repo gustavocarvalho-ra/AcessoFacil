@@ -18,8 +18,8 @@ export const useApi = () => ({
     return response.data;
   },
 
-  signIn: async (email: string, password: string) => {
-    const response = await api.put('./user/login', { email, password });
+  signIn: async (email: string, password: string, permission: string) => {
+    const response = await api.put('./user/login', { email, password, permission });
     return response.data;
   },
 

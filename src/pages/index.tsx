@@ -33,6 +33,7 @@ export function Login() {
 
   const email = watch('userEmail');
   const password = watch('password');
+  const permission = watch('permission');
   
   useEffect(() => {
     if (auth.user?.permission === 'usuario') { 
@@ -44,7 +45,7 @@ export function Login() {
 
   const onSubmit: SubmitHandler<Inputs> = async () => {
     try { 
-      await auth.signIn(email, password);
+      await auth.signIn(email, password, permission);
       toast({
         description: 'Login feito com sucesso',
         status: 'success',
@@ -99,7 +100,7 @@ export function Login() {
             errors={errors.password} 
           />
 
-          <RadioInput />
+          <RadioInput {...register('permission')} />
          
         </Stack>
         

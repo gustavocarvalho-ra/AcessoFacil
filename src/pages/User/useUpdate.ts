@@ -63,6 +63,14 @@ export function useUpdate() {
             Authorization: `Bearer ${storageData}`,
           },
         });
+        toast({
+          title: 'Foto atualizada com sucesso',
+          variant: 'left-accent',
+          position: 'bottom-right',
+          status: 'success',
+          duration: 1700,
+          isClosable: true,
+        });
         return response.data;
       }
     } catch (err: any) {

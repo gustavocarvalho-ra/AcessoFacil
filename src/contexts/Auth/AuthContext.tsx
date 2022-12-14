@@ -4,7 +4,7 @@ import { User } from '../../types/User';
 
 export type AuthContextType = {
   user: User | null;
-  signIn: (email: string, password: string) => Promise<string | boolean>;
+  signIn: (email: string, password: string, permission: string) => Promise<string | boolean>;
   registration: (email: string, password: string, name: string, permission: string)=> Promise<boolean>;
   signOut: () => void;
 }
