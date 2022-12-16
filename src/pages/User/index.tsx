@@ -14,6 +14,7 @@ import { ScannerQrCode } from '../../components/User/scannerQrCode';
 
 export function UserHome() {
   const auth = useContext(AuthContext);
+
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   
@@ -103,6 +104,7 @@ export function UserHome() {
             <ModalCloseButton _hover={{ color: 'orange' }} />
             <ModalBody>
               <ScannerQrCode />
+             
             </ModalBody>
 
           </ModalContent>

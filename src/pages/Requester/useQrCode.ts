@@ -30,9 +30,9 @@ export function useSendData() {
   const onSubmit:SubmitHandler<InputProps> = async (nameQrCode) => {
     try { 
       const id = userData?.user.id;
-      const QrCode = { nameQrCode, id };
+      const qrCode = { nameQrCode, id };
       
-      const newQrCode = { documentsValues, QrCode };
+      const newQrCode = { documentsValues, qrCode };
       console.log(newQrCode);
     } catch (err) {
       console.log('deu ruim');

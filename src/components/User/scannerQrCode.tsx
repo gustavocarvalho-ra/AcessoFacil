@@ -1,25 +1,39 @@
-/* eslint-disable consistent-return */
-import React, { useState } from 'react';
+import {
+  Button, Flex, Spinner,
+} from '@chakra-ui/react';
+import { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
+import { useNavigate } from 'react-router-dom';
 
 export function ScannerQrCode() {
-  const [data, setData] = useState('No result');
+  const [removeButton, setRemoveButton] = useState('Nenhum QrCode encontrado');
+  const [qrCodeData, setQrCodeData] = useState('No result');
+  const qrCode = qrCodeData.split('-');
+
+  localStorage.setItem('qrCodeData', qrCode);
+
+  const navigate = useNavigate();
+
+  const handleSendButton = (text : string) => {
+    if (text === 'enviar') {
+      navigate('dataQrCode');
+    }
+  };
 
   return (
-    <>
+    <Flex flexDir="column" align="center">
       <QrReader
-        onResult={(result, error) => {
+        onResult={async (result) => {
           if (result) {
-            setData(result?.text);
-          } 
-          if (error) {
-            return false;
+            await setQrCodeData(result?.text);
+            setRemoveButton('enviar');
           }
         }}
         constraints={{ facingMode: 'environment' }}
         containerStyle={{ width: '100%' }}
       />
-      <p>{data}</p>
-    </>
+        <Button w="80%" colorScheme="orange" onClick={() => { handleSendButton(removeButton); }}>{removeButton}{!removeButton && <Spinner />}</Button>
+    </Flex>
+    
   );
 }

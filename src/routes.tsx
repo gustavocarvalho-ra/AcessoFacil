@@ -8,22 +8,71 @@ import { Registration } from './pages/Registration';
 import { RequesterHome } from './pages/Requester';
 import { Private } from './pages/teste/paginaprivada';
 import { UserHome } from './pages/User';
-import { DataQrCode } from './pages/User/dataQrCode';
+import { SendDataQrCode } from './pages/User/sendDataQrCode';
 import { UserProfile } from './pages/User/profile';
+import { PageNewQrCode } from './pages/Requester/newQrCodePhoto';
 
 export default function RouterApp() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<HeaderForm />}>
-        <Route index element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/private" element={<RequireAuth><Private /></RequireAuth>} />
-      </Route>
-        <Route path="/requesterHome" element={<RequireAuth><RequireAuthPermission permission="solicitante"><RequesterHome /></RequireAuthPermission></RequireAuth>} />
-        <Route path="/userHome" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserHome /></RequireAuthPermission></RequireAuth>} />
-        <Route path="/userHome/userProfile" element={<RequireAuth><RequireAuthPermission permission="usuario"><UserProfile /></RequireAuthPermission></RequireAuth>} />
-        <Route path="/userHome/dataQrCode" element={<RequireAuth><RequireAuthPermission permission="usuario"><DataQrCode /></RequireAuthPermission></RequireAuth>} />
+        <Route path="/" element={<HeaderForm />}>
+          <Route index element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/private" element={<RequireAuth><Private /></RequireAuth>} />
+        </Route>
+
+        <Route 
+          path="/requesterHome"
+          element={
+            <RequireAuth>
+              <RequireAuthPermission permission="solicitante">
+                <RequesterHome />
+              </RequireAuthPermission>
+            </RequireAuth>
+          } 
+        />
+        <Route 
+          path="/requesterHome/newQrCode"
+          element={
+            <RequireAuth>
+              <RequireAuthPermission permission="solicitante">
+                <PageNewQrCode />
+              </RequireAuthPermission>
+            </RequireAuth>
+          } 
+        />
+        <Route 
+          path="/userHome"
+          element={
+            <RequireAuth>
+              <RequireAuthPermission permission="usuario">
+                <UserHome />
+              </RequireAuthPermission>
+            </RequireAuth>
+          }
+        />
+        <Route 
+          path="/userHome/userProfile"
+          element={
+            <RequireAuth>
+              <RequireAuthPermission permission="usuario">
+                <UserProfile />
+              </RequireAuthPermission>
+            </RequireAuth>
+          }
+        />
+        <Route 
+          path="/userHome/dataQrCode"
+          element={
+            <RequireAuth>
+              <RequireAuthPermission permission="usuario">
+                <SendDataQrCode />
+              </RequireAuthPermission>
+            </RequireAuth>
+          }
+        />
+        
         <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
