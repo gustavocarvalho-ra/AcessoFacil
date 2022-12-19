@@ -2,17 +2,16 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable consistent-return */
 import {
-  Flex, Link, Stack, Text, useToast, 
+  Flex, Link, Stack, Text,
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { ButtonForm } from '../components/Form/button';
 import { Input } from '../components/Form/input';
 import { signInSchema } from '../validation/schema';
-import { AuthContext } from '../contexts/Auth/AuthContext';
 import { RadioInput } from '../components/Form/inputRadioLogin';
+import { auth, navigate, toast } from '../utils/constants';
 
 interface Inputs{
   userEmail: string;
@@ -21,10 +20,6 @@ interface Inputs{
 }
 
 export function Login() {
-  const auth = useContext(AuthContext);
-  const navigate = useNavigate();
-  const toast = useToast();
-
   const {
     register, handleSubmit, watch, formState: { errors }, 
   } = useForm<Inputs>({

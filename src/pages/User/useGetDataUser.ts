@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import { useEffect, useState } from 'react';
 import { api } from '../../hooks/useApi';
+import { storageData } from '../../utils/constants';
 
 interface PropsPhoto{
   photo: string;
@@ -8,7 +9,6 @@ interface PropsPhoto{
 
 export function useGetPhotoUser() {
   const [photo, setPhoto] = useState<PropsPhoto>();
-  const storageData = localStorage.getItem('authToken');
 
   useEffect(() => {
     (async () => {

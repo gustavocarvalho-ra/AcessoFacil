@@ -1,10 +1,7 @@
-import { useContext } from 'react';
 import { Error404 } from '../../pages/Error/error';
-import { AuthContext } from './AuthContext';
+import { auth } from '../../utils/constants';
 
 export function RequireAuthPermission({ children, permission } : {children: JSX.Element, permission: string }) {
-  const auth = useContext(AuthContext);
-
   if (auth.user && permission === auth.user.permission) {
     return children;
   }

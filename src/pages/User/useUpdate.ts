@@ -1,6 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-expressions */
-import { useToast } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   useEffect, useState, 
@@ -8,6 +6,7 @@ import {
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { DataProfileSchema } from '../../validation/schema';
 import { api } from '../../hooks/useApi';
+import { storageData, toast } from '../../utils/constants';
 
 interface Inputs {
   name: string | null;
@@ -24,10 +23,8 @@ interface Inputs {
 }
 
 export function useUpdate() {
-  const toast = useToast();
   const [avatarUser, setAvatarUser] = useState<File>();
   const [preview, setPreview] = useState();
-  const storageData = localStorage.getItem('authToken');
 
   const {
     register, handleSubmit, formState: { errors }, 

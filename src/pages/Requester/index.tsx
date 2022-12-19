@@ -6,21 +6,16 @@ import {
   Center,
   Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure,
 } from '@chakra-ui/react';
-import React, { useContext } from 'react';
 import {
   TbDoorExit, TbSquarePlus, 
 } from 'react-icons/tb';
-import { useNavigate } from 'react-router-dom';
-import { ModalQrCode } from '../../components/Requester/modal';
+import { ModalQrCode } from '../../components/Requester/modalQrCode';
 import { TableQrCode } from '../../components/Requester/table';
-import { AuthContext } from '../../contexts/Auth/AuthContext';
+import { auth, navigate } from '../../utils/constants';
 
 export function RequesterHome() {
-  const auth = useContext(AuthContext);
-  // const [teste, setTeste] = useState<PropsID[]>('');
   const { onOpen, onClose, isOpen } = useDisclosure();
 
-  const navigate = useNavigate();
   const handleLogOut = async () => {
     await auth.signOut();
     navigate('/');
