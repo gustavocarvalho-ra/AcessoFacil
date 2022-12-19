@@ -58,7 +58,7 @@ export function useUpdate() {
   async function FilePhoto() {
     try {
       if (dataPhoto) {
-        const response = await api.patch('./user/avatar', dataPhoto, {
+        const response = await api.patch('/user/avatar', dataPhoto, {
           headers: {
             Authorization: `Bearer ${storageData}`,
           },
@@ -93,7 +93,6 @@ export function useUpdate() {
         headers: {
           Authorization: `Bearer ${storageData}`, 
         },
-        
       });
       
       toast({

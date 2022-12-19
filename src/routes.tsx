@@ -11,6 +11,7 @@ import { UserHome } from './pages/User';
 import { SendDataQrCode } from './pages/User/sendDataQrCode';
 import { UserProfile } from './pages/User/profile';
 import { PageNewQrCode } from './pages/Requester/newQrCodePhoto';
+import { InfomationQrCode } from './pages/Requester/infomationQrCode';
 
 export default function RouterApp() {
   return (
@@ -38,6 +39,16 @@ export default function RouterApp() {
             <RequireAuth>
               <RequireAuthPermission permission="solicitante">
                 <PageNewQrCode />
+              </RequireAuthPermission>
+            </RequireAuth>
+          } 
+        />
+        <Route 
+          path="/requesterHome/informationQrCode"
+          element={
+            <RequireAuth>
+              <RequireAuthPermission permission="solicitante">
+                <InfomationQrCode />
               </RequireAuthPermission>
             </RequireAuth>
           } 
