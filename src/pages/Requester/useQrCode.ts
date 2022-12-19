@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -21,6 +22,7 @@ export function useQrCode() {
 
   const [qrCodeInformation, setQrCodeInformation] = useState('');
   const toast = useToast();
+  const navigate = useNavigate();
  
   const { userData } = useGetDataUser();
   const id = userData?.user.id;
@@ -48,6 +50,7 @@ export function useQrCode() {
         duration: 1700,
         isClosable: true,
       });
+      navigate('/requesterHome/newQrCode');
     } catch (err) {
       toast({
         title: 'Não foi possivel criar o qr code, tenta novamente mais tarde',
