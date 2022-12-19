@@ -10,8 +10,8 @@ import { Private } from './pages/teste/paginaprivada';
 import { UserHome } from './pages/User';
 import { SendDataQrCode } from './pages/User/sendDataQrCode';
 import { UserProfile } from './pages/User/profile';
-import { PageNewQrCode } from './pages/Requester/newQrCodePhoto';
 import { InfomationQrCode } from './pages/Requester/infomationQrCode';
+import { PageNewQrCode } from './pages/Requester/pagenewQrCodePhoto';
 
 export default function RouterApp() {
   return (
