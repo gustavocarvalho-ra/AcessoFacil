@@ -3,7 +3,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
-import { navigate } from '../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 export function ScannerQrCode() {
   const [removeButton, setRemoveButton] = useState('Nenhum QrCode encontrado');
@@ -11,6 +11,8 @@ export function ScannerQrCode() {
   const qrCode = qrCodeData.split('-');
 
   localStorage.setItem('qrCodeData', qrCode);
+
+  const navigate = useNavigate();
 
   const handleSendButton = (text : string) => {
     if (text === 'enviar') {

@@ -6,12 +6,15 @@ import { TbDoorExit } from 'react-icons/tb';
 import { MdQrCodeScanner } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 import { MenuItemList } from '../../components/User/menuItem';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { useGetPhotoUser } from './useGetDataUser';
 import { ScannerQrCode } from '../../components/User/scannerQrCode';
-import { auth } from '../../utils/constants';
 
 export function UserHome() {
+  const auth = useContext(AuthContext);
+
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   

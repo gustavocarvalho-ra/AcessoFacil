@@ -1,13 +1,13 @@
 import { Flex, Icon, Link } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
-import { To } from 'react-router-dom';
-import { navigate } from '../utils/constants';
+import { To, useNavigate } from 'react-router-dom';
 
 interface HeaderLinkBackProps {
   route: To;
 }
 
 export function HeaderLinkBack({ route }: HeaderLinkBackProps) {
+  const navigate = useNavigate();
   return (
     <Flex as="header" w="100%" h="150px" align="center" onClick={() => navigate(route)}>
       <Link

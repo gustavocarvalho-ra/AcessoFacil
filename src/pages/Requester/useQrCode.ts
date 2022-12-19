@@ -1,7 +1,7 @@
+import { useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { api } from '../../hooks/useApi';
-import { toast } from '../../utils/constants';
 import { useGetDataUser } from '../User/useGetDataUser';
 
 export interface PropsId {
@@ -20,6 +20,7 @@ export function useQrCode() {
   selectedDocument.forEach((document) => documentsValues.push(document.value));
 
   const [qrCodeInformation, setQrCodeInformation] = useState('');
+  const toast = useToast();
  
   const { userData } = useGetDataUser();
   const id = userData?.user.id;

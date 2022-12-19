@@ -2,9 +2,11 @@ import {
   Box, Flex, Heading, Icon, Image, Link,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
-import { navigate } from '../../utils/constants';
+import { useNavigate } from 'react-router-dom';
 
 export function Error404() {
+  const navigate = useNavigate();
+  
   return (
     <Box w="100%" h="100vh" bg="gray.800" color="gray.50">
       

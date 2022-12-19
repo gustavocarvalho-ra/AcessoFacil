@@ -1,12 +1,16 @@
 import {
-  Flex, SimpleGrid,
+  Flex, SimpleGrid, useToast,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import {
+  useContext, 
+} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { ButtonForm } from '../../components/Form/button';
 import { Input } from '../../components/Form/input';
 import { RadioInput } from '../../components/Form/inputRadio';
-import { auth, navigate, toast } from '../../utils/constants';
+import { AuthContext } from '../../contexts/Auth/AuthContext';
 import { RegisterUserSchema } from '../../validation/schema';
 
 interface Inputs {
@@ -18,6 +22,10 @@ interface Inputs {
 }
 
 export function Registration() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+  const toast = useToast();
+
   const {
     register, handleSubmit, watch, formState: { errors }, 
   } = useForm<Inputs>({
