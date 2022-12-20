@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { api } from '../../hooks/useApi';
 import { useGetDataUser } from '../User/useGetDataUser';
@@ -66,31 +66,5 @@ export function useQrCode() {
   };
   return {
     selectedDocument, setSelectedDocument, handleAddSelect, onSubmit, handleSubmit, register,
-  };
-}
-
-interface PropsQrCode{
-  photo: string;
-}
-
-export function useGetQrCode() {
-  const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCode>();
-  const idQrCode = localStorage.getItem('qrId');
-  const qrId = idQrCode;
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await api.get('/qrcode', { params: { qrId } });
-        setQrCodeInformation(data);
-        return data;
-      } catch {
-        console.log('Error trying to search for this category!');
-      }
-    })();
-  }, []);
-
-  return {
-    qrCodeInformation,
   };
 }
