@@ -15,7 +15,7 @@ interface InputProps{
   nameQrCode: string;
 }
 
-export function useQrCode() {
+export function useNewQrCode() {
   const initial: PropsId = { id: String(Math.random()), value: 'default' };
   const [selectedDocument, setSelectedDocument] = useState<PropsId[]>([initial]);
   const documentsValues: String[] = [];
@@ -36,8 +36,8 @@ export function useQrCode() {
 
   const onSubmit:SubmitHandler<InputProps> = async (nameQrCode) => {
     try {
-      const qrCode = { nameQrCode, id };
-      const newQrCode = { documentsValues, qrCode };
+      const qrCode = { nameQrCode, id, documentsValues };
+      const newQrCode = { qrCode };
       
       const { data } = await api.post('/qrcode', newQrCode);
       const qrId = data.id;

@@ -3,7 +3,7 @@ import {
   Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Button, Stack, Heading, ModalFooter,
 } from '@chakra-ui/react';
 import { MdOutlineLibraryAdd } from 'react-icons/md';
-import { useQrCode } from '../../pages/Requester/useQrCode';
+import { useNewQrCode } from '../../pages/Requester/useNewQrCode';
 import { ButtonForm } from '../Form/button';
 import { Input } from '../Form/input';
 import { SelectQrCode } from './selectQrCode';
@@ -16,7 +16,7 @@ interface ModalQrCodeProps {
 export function ModalQrCode({ isOpen, onClose }: ModalQrCodeProps) {
   const {
     selectedDocument, setSelectedDocument, handleAddSelect, onSubmit, handleSubmit, register,
-  } = useQrCode();
+  } = useNewQrCode();
  
   return (
     <Modal

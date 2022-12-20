@@ -9,6 +9,9 @@ import { useGetDataUser } from './useGetDataUser';
 export function SendDataQrCode() {
   const { userData } = useGetDataUser(); 
   const qrCodeData = localStorage.getItem('qrCodeData');
+  const teste: string[] = [qrCodeData];
+  console.log(teste);
+  
   return (
     <Box as="section">
       
@@ -20,8 +23,9 @@ export function SendDataQrCode() {
           <InputQrCode value={userData?.user.cpf} type="text" label="CPF" />
         </InputGroup>
 
-        {qrCodeData}
-
+        {teste?.map((teste) => (
+          <p key={teste}>{teste}</p>
+        ))}
         <ButtonForm text="Enviar" />
       </Container>
 

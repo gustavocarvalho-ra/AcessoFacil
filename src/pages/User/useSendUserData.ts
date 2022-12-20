@@ -6,8 +6,8 @@ interface PropsQrCode{
   photo: string;
 }
 
-export function useGetQrCode() {
-  const [qrCodePhoto, setQrCodePhoto] = useState<PropsQrCode>();
+export function useSendUserData() {
+  const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCode>();
   const idQrCode = localStorage.getItem('qrId');
   const qrId = idQrCode;
 
@@ -15,7 +15,7 @@ export function useGetQrCode() {
     (async () => {
       try {
         const { data } = await api.get('/qrcode', { params: { qrId } });
-        setQrCodePhoto(data);
+        setQrCodeInformation(data);
         return data;
       } catch {
         console.log('Error trying to search for this category!');
@@ -24,6 +24,6 @@ export function useGetQrCode() {
   }, []);
 
   return {
-    qrCodePhoto,
+    qrCodeInformation,
   };
 }
