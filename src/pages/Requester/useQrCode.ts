@@ -1,6 +1,7 @@
+/* eslint-disable consistent-return */
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { api } from '../../hooks/useApi';
 import { useGetDataUser } from '../User/useGetDataUser';
@@ -20,10 +21,8 @@ export function useQrCode() {
   const documentsValues: String[] = [];
   selectedDocument.forEach((document) => documentsValues.push(document.value));
 
-  const [qrCodeInformation, setQrCodeInformation] = useState('');
   const toast = useToast();
   const navigate = useNavigate();
- 
   const { userData } = useGetDataUser();
   const id = userData?.user.id;
 
@@ -39,9 +38,11 @@ export function useQrCode() {
     try {
       const qrCode = { nameQrCode, id };
       const newQrCode = { documentsValues, qrCode };
+      
+      const { data } = await api.post('/qrcode', newQrCode);
+      const qrId = data.id;
+      localStorage.setItem('qrId', qrId);
 
-      const response = await api.post('/user/qrcode', newQrCode);
-      setQrCodeInformation(response.data);
       toast({
         title: 'Qr code criado com sucesso!',
         variant: 'left-accent',
@@ -53,7 +54,7 @@ export function useQrCode() {
       navigate('/requesterHome/newQrCode');
     } catch (err) {
       toast({
-        title: 'Não foi possivel criar o qr code, tenta novamente mais tarde',
+        title: 'Não foi possivel criar o qr code, tente novamente mais tarde',
         variant: 'left-accent',
         position: 'bottom-right',
         status: 'error',
@@ -63,8 +64,33 @@ export function useQrCode() {
       console.log('Error trying to search for this category!');
     }
   };
+  return {
+    selectedDocument, setSelectedDocument, handleAddSelect, onSubmit, handleSubmit, register,
+  };
+}
+
+interface PropsQrCode{
+  photo: string;
+}
+
+export function useGetQrCode() {
+  const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCode>();
+  const idQrCode = localStorage.getItem('qrId');
+  const qrId = idQrCode;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await api.get('/qrcode', { params: { qrId } });
+        setQrCodeInformation(data);
+        return data;
+      } catch {
+        console.log('Error trying to search for this category!');
+      }
+    })();
+  }, []);
 
   return {
-    selectedDocument, setSelectedDocument, handleAddSelect, onSubmit, handleSubmit, register, qrCodeInformation,
+    qrCodeInformation,
   };
 }
