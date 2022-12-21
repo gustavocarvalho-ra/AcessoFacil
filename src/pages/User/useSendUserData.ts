@@ -1,29 +1,48 @@
 /* eslint-disable consistent-return */
-import { useEffect, useState } from 'react';
+import { useToast } from '@chakra-ui/react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { api } from '../../hooks/useApi';
 
-interface PropsQrCode{
-  photo: string;
+interface Inputs {
+ item: any
 }
 
 export function useSendUserData() {
-  const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCode>();
-  const idQrCode = localStorage.getItem('qrId');
-  const qrId = idQrCode;
+  const qrId = localStorage.getItem('qrId');
+  const toast = useToast();
+  const token = localStorage.getItem('authToken');
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await api.get('/qrcode', { params: { qrId } });
-        setQrCodeInformation(data);
-        return data;
-      } catch {
-        console.log('Error trying to search for this category!');
-      }
-    })();
-  }, []);
+  const {
+    register, handleSubmit, watch,
+  } = useForm<Inputs>();
+  const teste = watch('item');
+  console.log(teste);
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      const response = await api.post('/qrcode', { token, qrId, data });
+      console.log({ token, qrId, data });
+      console.log(teste);
+      
+      return response.data;
+    } catch (err: any) {
+      const messageError = err.request.response;
+      console.log(messageError);
+      
+      toast({
+        title: messageError.slice(1, 30),
+        variant: 'left-accent',
+        position: 'bottom-right',
+        status: 'error',
+        duration: 1700,
+        isClosable: true,
+
+      });
+      console.log('Error trying to search for this category!');
+    }
+  };
 
   return {
-    qrCodeInformation,
+    onSubmit, register, handleSubmit, watch, 
   };
 }

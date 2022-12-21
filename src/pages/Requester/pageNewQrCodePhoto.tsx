@@ -13,7 +13,7 @@ export function PageNewQrCode() {
       <HeaderLinkBack route="/requesterHome" />
       <Flex h="800px" flexDir="column" align="center" justify="center">
         <Center w="478px" h="478px" bg="orange.600" borderRadius="100%">
-          <Image src={qrCodePhoto} h="300px" w="300px" />
+          <Image src={qrCodePhoto?.photo} h="300px" w="300px" />
         </Center>
       </Flex>
     </Box>

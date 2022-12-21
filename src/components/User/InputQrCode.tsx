@@ -6,7 +6,7 @@ import { forwardRef, ForwardRefRenderFunction } from 'react';
 import { FieldError } from 'react-hook-form';
 
 interface InputFormProps extends ChakraInputProps{
-  label?: string;
+  label?: string | boolean;
   type: string;
   mt?: string[] | string;
   errors?: FieldError;

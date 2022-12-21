@@ -8,8 +8,7 @@ interface PropsQrCode{
 
 export function useGetQrCode() {
   const [qrCodePhoto, setQrCodePhoto] = useState<PropsQrCode>();
-  const idQrCode = localStorage.getItem('qrId');
-  const qrId = idQrCode;
+  const qrId = localStorage.getItem('qrId');
 
   useEffect(() => {
     (async () => {

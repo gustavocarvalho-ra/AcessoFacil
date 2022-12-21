@@ -6,18 +6,29 @@ import { ButtonForm } from '../../components/Form/button';
 import { HeaderLinkBack } from '../../components/headerLinkBack';
 import { InputQrCode } from '../../components/User/InputQrCode';
 import { useGetDataUser } from './useGetDataUser';
+import { useSendUserData } from './useSendUserData';
 
 export function SendDataQrCode() {
   const { userData } = useGetDataUser(); 
   const qrCodeData: any = localStorage.getItem('qrCodeData');
   const data: string[] = qrCodeData?.split(',');
+
+  const {
+    handleSubmit, onSubmit,
+  } = useSendUserData();
   
   return (
     <Box as="section">
       
       <HeaderLinkBack route="/userHome" />
 
-      <Container as="form" h="auto" minH="488px" centerContent>
+      <Container
+        as="form"
+        h="auto"
+        minH="488px"
+        centerContent
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Heading fontSize={24} mb="87px">Name está solicitando os seguintes dados:</Heading>
 
         <InputGroup w="400px" mb="140px" flexDir="column" alignItems="center">
