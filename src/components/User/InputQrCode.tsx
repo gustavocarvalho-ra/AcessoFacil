@@ -22,7 +22,7 @@ const InputData : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
         fontWeight="regular"
         fontSize={20}
         color="gray.500"
-        w="500px"
+        w={['290px', '500px']}
         css={{
           borderBottom: '2px solid #9D5C0D',
         }}>

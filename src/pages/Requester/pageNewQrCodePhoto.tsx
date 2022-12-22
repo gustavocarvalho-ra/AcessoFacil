@@ -11,9 +11,14 @@ export function PageNewQrCode() {
   return (
     <Box w="100%" h="100vh">
       <HeaderLinkBack route="/requesterHome" />
-      <Flex h="800px" flexDir="column" align="center" justify="center">
-        <Center w="478px" h="478px" bg="orange.600" borderRadius="100%">
-          <Image src={qrCodePhoto?.photo} h="300px" w="300px" />
+      <Flex h={['100vh', '800px']} flexDir="column" align="center" justify="center">
+        <Center 
+          w={['100%', '478px']}
+          h="478px"
+          bg="orange.600"
+          borderRadius={[0, '100%']}
+        >
+          <Image src={qrCodePhoto?.photo} h={['280px', '300px']} w={['280px', '300px']} />
         </Center>
       </Flex>
     </Box>

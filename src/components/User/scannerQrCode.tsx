@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Spinner,
+  Button, Flex,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
@@ -20,6 +20,10 @@ export function ScannerQrCode() {
     }
   };
 
+  // const seila = (colorScheme) => {
+  //  colorScheme 'green';
+  // };
+
   return (
     <Flex flexDir="column" align="center">
       <QrReader
@@ -32,7 +36,14 @@ export function ScannerQrCode() {
         constraints={{ facingMode: 'environment' }}
         containerStyle={{ width: '100%' }}
       />
-        <Button w="80%" colorScheme="orange" onClick={() => { handleSendButton(removeButton); }}>{removeButton}{!removeButton && <Spinner />}</Button>
+        <Button 
+          w={['100%', '80%']}
+          colorScheme="orange"
+          fontSize={[16, 20]}
+          onClick={() => { handleSendButton(removeButton); }}
+        >
+          {removeButton}
+        </Button>
     </Flex>
     
   );

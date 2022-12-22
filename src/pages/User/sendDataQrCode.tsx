@@ -29,9 +29,9 @@ export function SendDataQrCode() {
         centerContent
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Heading fontSize={24} mb="87px">Name está solicitando os seguintes dados:</Heading>
+        <Heading fontSize={24} mb={['80px', '87px']}>Name está solicitando os seguintes dados:</Heading>
 
-        <InputGroup w="400px" mb="140px" flexDir="column" alignItems="center">
+        <InputGroup w={['300px', '400px']} mb={['100px', '140px']} flexDir="column" alignItems="center">
           {data?.map((item) => {
             const value = (item: string | number) => {
               if (item === 'name') {

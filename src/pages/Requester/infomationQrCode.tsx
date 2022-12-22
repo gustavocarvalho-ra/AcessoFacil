@@ -4,17 +4,19 @@ import {
   Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
+import { useGetQrCode } from './useGetQrCode';
 
 export function InfomationQrCode() {
+  const { qrCodePhoto } = useGetQrCode();
   // function handleClick() {
   //   navigator.clipboard.writeText(JSON.stringify(props));
   // }
   return (
     <Flex flexDir="column" align="center" w="100%">
-      <Flex h="177px" align="center" justify="center">
+      <Flex h="177px" align="center" justify={['space-evenly', 'center']} flexDir={['column', 'row']}>
         <Link
           w="230px"
-          position="absolute"
+          position={['inherit', 'absolute']}
           left="66px"
           href="/requesterHome"
           fontWeight="medium"
@@ -26,23 +28,30 @@ export function InfomationQrCode() {
         >
           <Icon as={VscReply} mr="10px" fontSize={18} />
             voltar
-        </Link>      
-        <Heading fontWeight="bold" fontSize={24} color="orange.900" textAlign="center">
-        
-          QR Code - Cadastro </Heading>
+        </Link> 
+
+        <Heading
+          fontWeight="bold"
+          fontSize={24}
+          color="orange.900"
+          textAlign="center"
+        > 
+          QR Code - Cadastro 
+        </Heading>
       </Flex>
 
       <Flex
         justify="space-between"
         align="center"
-        w="1200px"
-        h="472px"
-        mt="100px"
+        flexDir={['column', 'row']}
+        w={['100%', '1200px']}
+        h={['auto', '472px']}
+        mt={['30px', '100px']}
         mb="100px"
       >
 
-        <Flex flexDir="column" align="center" w="800px" h="414px">
-          <InputGroup w="700px" mb="50px">
+        <Flex flexDir="column" align="center" w={['100%', '800px']} h="414px">
+          <InputGroup w={['90%', '700px']} mb={['60px', '50px']}>
             <InputRightElement
               pointerEvents="none"
               children={<Search2Icon color="gray.700" />}
@@ -171,8 +180,8 @@ export function InfomationQrCode() {
 
         </Flex>
        
-        <Center w="302px" h="302px" bg="orange.600" borderRadius="100%">
-          <Image src="{qrCodeInformation.photo}" h="188px" w="188px" />
+        <Center w="302px" h="302px" bg="orange.600" borderRadius="100%" mt={['70px', 0]}>
+          <Image src={qrCodePhoto?.photo} h="188px" w="188px" />
         </Center>
       
       </Flex>
