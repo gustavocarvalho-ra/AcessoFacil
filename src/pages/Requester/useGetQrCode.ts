@@ -1,14 +1,16 @@
 /* eslint-disable consistent-return */
 import { useEffect, useState } from 'react';
 import { api } from '../../hooks/useApi';
+import { useGetDataUser } from '../User/useGetDataUser';
 
-interface PropsQrCode{
+interface PropsPhotoQrCode{
   photo: string;
 }
 
-export function useGetQrCode() {
-  const [qrCodePhoto, setQrCodePhoto] = useState<PropsQrCode>();
-  const qrId = localStorage.getItem('qrId');
+export function useGetPhotoQrCode() {
+  const [qrCodePhoto, setQrCodePhoto] = useState<PropsPhotoQrCode>();
+  const { qrId } = useGetQrCode();
+  console.log(qrId);
 
   useEffect(() => {
     (async () => {
@@ -24,5 +26,42 @@ export function useGetQrCode() {
 
   return {
     qrCodePhoto,
+  };
+}
+
+interface PropsQrCode{
+  id: number & string;
+  user_id: number;
+  name: string;
+  data: string,
+}
+
+export function useGetQrCode() {
+  const { userData } = useGetDataUser();
+  const [qrCode, setQrCode] = useState<PropsQrCode[]>([]);
+
+  const qrId = qrCode.map((item) => {
+    return item.id;
+  });
+
+  if (userData?.user.id !== undefined) {
+    localStorage.setItem('userid', userData?.user.id);
+  }
+  const userId = localStorage.getItem('id');
+  
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
+        setQrCode(data);
+        return data;
+      } catch {
+        console.log('Error trying to search for this category!');
+      }
+    })();
+  }, []);
+
+  return {
+    qrCode, qrId,
   };
 }

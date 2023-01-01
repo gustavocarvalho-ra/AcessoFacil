@@ -2,6 +2,7 @@
 import {
   Box, Container, Heading, Image, InputGroup,
 } from '@chakra-ui/react';
+import { ChangeEvent } from 'react';
 import { ButtonForm } from '../../components/Form/button';
 import { HeaderLinkBack } from '../../components/headerLinkBack';
 import { InputQrCode } from '../../components/User/InputQrCode';
@@ -10,15 +11,13 @@ import { useSendUserData } from './useSendUserData';
 
 export function SendDataQrCode() {
   const { userData } = useGetDataUser(); 
-  const qrCodeData: any = localStorage.getItem('qrCodeData');
-  const data: string[] = qrCodeData?.split(',');
 
-  const {
-    handleSubmit, onSubmit,
+  const { 
+    handleSubmit, onSubmit, data, documentsValue, setDocumentsValue,
   } = useSendUserData();
   
   return (
-    <Box as="section">
+    <Box as="section" h="100vh">
       
       <HeaderLinkBack route="/userHome" />
 
@@ -26,13 +25,14 @@ export function SendDataQrCode() {
         as="form"
         h="auto"
         minH="488px"
+        position="relative"
         centerContent
         onSubmit={handleSubmit(onSubmit)}
       >
         <Heading fontSize={24} mb={['80px', '87px']}>Name está solicitando os seguintes dados:</Heading>
 
-        <InputGroup w={['300px', '400px']} mb={['100px', '140px']} flexDir="column" alignItems="center">
-          {data?.map((item) => {
+        <InputGroup w={['300px', '400px']} mb={['100px', '90px']} flexDir="column" alignItems="center">
+          {data?.map((item, index) => {
             const value = (item: string | number) => {
               if (item === 'name') {
                 return userData?.user.name;
@@ -85,9 +85,14 @@ export function SendDataQrCode() {
               }
               return false;
             };
+
+            const onChangeQtdUsada = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+              documentsValue[index] = e.target.value;
+              setDocumentsValue([...documentsValue]);
+            };
             
             return (
-              <InputQrCode key={item} value={value(item)} type="text" label={label(item)} />
+              <InputQrCode key={item} defaultValue={value(item)} type="text" label={label(item)} id={`documentsValue-${index + 1}`} onChange={(e) => onChangeQtdUsada(e, index)} />
             );
           })}
         </InputGroup>
@@ -95,7 +100,7 @@ export function SendDataQrCode() {
         <ButtonForm text="Enviar" />
       </Container>
      
-      <Box as="footer" w="100%" position="fixed" bottom={0}>
+      <Box as="footer" w="100%" position="fixed" bottom={0} zIndex="-1">
         <Image alt="wave" w="100%" src=" https://capsule-render.vercel.app/api?type=waving&color=9D5C0D&height=120&section=footer" />
       </Box>
     </Box>

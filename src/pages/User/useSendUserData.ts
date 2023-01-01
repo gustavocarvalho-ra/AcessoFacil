@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import { useToast } from '@chakra-ui/react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { api } from '../../hooks/useApi';
 
@@ -11,18 +12,22 @@ export function useSendUserData() {
   const qrId = localStorage.getItem('qrId');
   const toast = useToast();
   const token = localStorage.getItem('authToken');
+  const qrCodeData: any = localStorage.getItem('qrCodeData');
+  const data: string[] = qrCodeData?.split(',');
+
+  const [documentsValue, setDocumentsValue] = useState([]);
 
   const {
     register, handleSubmit, watch,
   } = useForm<Inputs>();
-  const teste = watch('item');
-  console.log(teste);
+  // const teste = watch('item');
+  // console.log(teste);
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async () => {
     try {
-      const response = await api.post('/qrcode', { token, qrId, data });
-      console.log({ token, qrId, data });
-      console.log(teste);
+      console.log(documentsValue);
+      const response = await api.post('/qrcode/relate', { token, qrId, documentsValue });
+      console.log({ token, qrId, documentsValue });
       
       return response.data;
     } catch (err: any) {
@@ -43,6 +48,6 @@ export function useSendUserData() {
   };
 
   return {
-    onSubmit, register, handleSubmit, watch, 
+    onSubmit, register, handleSubmit, watch, data, documentsValue, setDocumentsValue,
   };
 }

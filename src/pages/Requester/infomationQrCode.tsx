@@ -4,10 +4,13 @@ import {
   Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
-import { useGetQrCode } from './useGetQrCode';
+import { useGetPhotoQrCode } from './useGetQrCode';
+// import { useListUsers } from './useListUsers';
 
 export function InfomationQrCode() {
-  const { qrCodePhoto } = useGetQrCode();
+  const { qrCodePhoto } = useGetPhotoQrCode();
+  // const { qrCodeInformation } = useListUsers();
+  
   // function handleClick() {
   //   navigator.clipboard.writeText(JSON.stringify(props));
   // }
@@ -113,66 +116,13 @@ export function InfomationQrCode() {
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres aaaaaaaaaaaaaaaaaaaa(cm)</Td>
-                  <Td>30.48</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td>30.48</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td>30.48</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td>30.48</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td>25.4</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres aaaaaaaaaaaaaaaaaaaa(cm)</Td>
-                  <Td>30.48</Td>
-                  <Td cursor="pointer"><CopyIcon /></Td>
-                </Tr>
+                {/* {qrCodeInformation?.map((item, index) => (
+                  <Tr key={index}>
+                    <Td>{item.dataEmail}</Td>
+                    <Td>a</Td>
+                    <Td cursor="pointer"><CopyIcon /></Td>
+                  </Tr>
+                ))} */}
               </Tbody>
             
             </Table>

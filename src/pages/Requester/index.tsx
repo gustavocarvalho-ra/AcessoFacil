@@ -17,7 +17,6 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 export function RequesterHome() {
   const auth = useContext(AuthContext);
-  // const [teste, setTeste] = useState<PropsID[]>('');
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   const navigate = useNavigate();

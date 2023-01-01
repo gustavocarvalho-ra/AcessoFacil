@@ -10,11 +10,11 @@ interface InputFormProps extends ChakraInputProps{
   type: string;
   mt?: string[] | string;
   errors?: FieldError;
-  value: any;
+  defaultValue: any;
 }
 
 const InputData : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = ({
-  label, type, mt, errors, value, ...rest 
+  label, type, mt, errors, defaultValue, ...rest 
 }, ref) => {
   return (
     <FormControl w="auto" isInvalid={!!errors}>
@@ -30,7 +30,7 @@ const InputData : ForwardRefRenderFunction<HTMLInputElement, InputFormProps> = (
         <ChakraInput
           required
           type="text"
-          defaultValue={value}
+          defaultValue={defaultValue}
           color="gray.900"
           fontSize="26"
           variant="flushed"
