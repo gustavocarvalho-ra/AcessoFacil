@@ -2,10 +2,25 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../hooks/useApi';
 
-export function useListUsers(id) {
-  const qrId = id;
-  const [qrCodeInformation, setQrCodeInformation] = useState([]);
+interface PropsQrCodeData{
+  name: string ;
+  cpf: string ;
+  rg: string ;
+  dataEmail: string;
+  phoneNumber: number;
+  birthDate: number;
+  nationality: string;
+  cnh: number;
+  cep: number;
+  streetNumber: string;
+  civilStatus: string;
+}
 
+export function useListUsers() {
+  const qrId = 18;
+  const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCodeData[]>([]);
+  console.log('oi');
+  
   useEffect(() => {
     (async () => {
       try {
@@ -20,25 +35,5 @@ export function useListUsers(id) {
 
   return {
     qrCodeInformation,
-  };
-}
-
-export function useListNumbersAnswers(id) {
-  const [answers, setAnswers] = useState([]);
-  const qrId = id;
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await api.get('/qrcode/numberanswers', { params: { qrId } });
-        setAnswers(data);
-        return data;
-      } catch {
-        console.log('Error trying to search for this category!');
-      }
-    })();
-  }, []);
-
-  return {
-    answers,
   };
 }

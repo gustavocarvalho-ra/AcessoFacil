@@ -13,7 +13,7 @@ export function SendDataQrCode() {
   const { userData } = useGetDataUser(); 
 
   const { 
-    handleSubmit, onSubmit, data, documentsValue, setDocumentsValue,
+    handleSubmit, onSubmit, data, documentsValues,
   } = useSendUserData();
   
   return (
@@ -57,8 +57,9 @@ export function SendDataQrCode() {
               } if (item === 'civilStatus') {
                 return userData?.user.civilStatus;
               }
-              return false;
+              return '';
             };
+            
             const label = (item: string | number) => {
               if (item === 'name') {
                 return 'Nome';
@@ -85,10 +86,14 @@ export function SendDataQrCode() {
               }
               return false;
             };
+            documentsValues.push(`${item}: ${value(item)}`);
 
             const onChangeQtdUsada = (e: ChangeEvent<HTMLInputElement>, index: number) => {
-              documentsValue[index] = e.target.value;
-              setDocumentsValue([...documentsValue]);
+              documentsValues[index] = `${item}: ${e.target.value}`;
+
+              if (!documentsValues.includes(documentsValues[index])) {
+                documentsValues.push(documentsValues[index]);
+              }
             };
             
             return (

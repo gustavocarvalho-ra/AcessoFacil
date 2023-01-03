@@ -32,18 +32,18 @@ export function useGetPhotoUser() {
   };
 }
 
-interface PropsDataUser{
+export interface PropsDataUser{
   user:{
-    id: number & string;
+    id: string;
     name: string;
-    cpf: number;
-    rg: number;
+    cpf: string;
+    rg: string;
     dataEmail: string;
-    phoneNumber: number;
-    birthDate: number;
+    phoneNumber: string;
+    birthDate: string;
     nationality: string;
-    cnh: number;
-    cep: number;
+    cnh: string;
+    cep: string;
     streetNumber: string;
     civilStatus: string; 
   }
@@ -61,9 +61,7 @@ export function useGetDataUser() {
             Authorization: `Bearer ${storageData}`,
           },
         });
-
         setUserData(data);
-        return data;
       } catch {
         console.log('Error trying to search for this category!');
       }

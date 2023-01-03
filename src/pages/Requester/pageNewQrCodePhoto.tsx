@@ -2,11 +2,11 @@ import {
   Box, Center, Flex, Image, 
 } from '@chakra-ui/react';
 import { HeaderLinkBack } from '../../components/headerLinkBack';
-import { useGetPhotoQrCode } from './useGetQrCode';
+import { useGetPhotoNewQrCode } from './useGetQrCode';
 
 export function PageNewQrCode() {
   // eslint-disable-next-line no-unused-vars
-  const { qrCodePhoto } = useGetPhotoQrCode();
+  const { qrCodePhoto } = useGetPhotoNewQrCode();
 
   return (
     <Box w="100%" h="100vh">

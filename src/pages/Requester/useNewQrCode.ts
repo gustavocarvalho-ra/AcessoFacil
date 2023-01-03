@@ -4,7 +4,6 @@ import { useToast } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { api } from '../../hooks/useApi';
-import { useGetDataUser } from '../User/useGetDataUser';
 
 export interface PropsId {
   id: string;
@@ -16,6 +15,7 @@ interface InputProps{
 }
 
 export function useNewQrCode() {
+  const storageData = localStorage.getItem('authToken');
   const initial: PropsId = { id: String(Math.random()), value: 'default' };
   const [selectedDocument, setSelectedDocument] = useState<PropsId[]>([initial]);
   const documentsValues: String[] = [];
@@ -23,8 +23,6 @@ export function useNewQrCode() {
 
   const toast = useToast();
   const navigate = useNavigate();
-  const { userData } = useGetDataUser();
-  const id = userData?.user.id;
 
   function handleAddSelect() {
     setSelectedDocument([...selectedDocument, { id: String(Math.random()), value: 'default' }]);
@@ -36,10 +34,14 @@ export function useNewQrCode() {
 
   const onSubmit:SubmitHandler<InputProps> = async (nameQrCode) => {
     try {
-      const qrCode = { nameQrCode, id, documentsValues };
+      const qrCode = { nameQrCode, documentsValues };
       const newQrCode = { qrCode };
       
-      const { data } = await api.post('/qrcode', newQrCode);
+      const { data } = await api.post('/qrcode', newQrCode, {
+        headers: {
+          Authorization: `Bearer ${storageData}`,
+        },
+      });
       const qrId = data.id;
       localStorage.setItem('qrId', qrId);
 
