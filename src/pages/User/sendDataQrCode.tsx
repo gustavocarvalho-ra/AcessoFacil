@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import {
-  Box, Container, Heading, Image, InputGroup,
+  Box, Container, Image, InputGroup,
 } from '@chakra-ui/react';
 import { ChangeEvent } from 'react';
 import { ButtonForm } from '../../components/Form/button';
@@ -29,7 +29,6 @@ export function SendDataQrCode() {
         centerContent
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Heading fontSize={24} mb={['80px', '87px']}>Name está solicitando os seguintes dados:</Heading>
 
         <InputGroup w={['300px', '400px']} mb={['100px', '90px']} flexDir="column" alignItems="center">
           {data?.map((item, index) => {

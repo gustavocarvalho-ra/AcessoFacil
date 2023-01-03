@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Spinner, Skeleton, Stack, 
+  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack, 
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
 import { useListUsers } from './useListUsers';
@@ -96,34 +96,55 @@ export function InfomationQrCode() {
               <Thead>
                 <Tr>
                   
-                {/* {qrCode?.map((item, index) => (
-                  <Th>{item.data}</Th>
-                ))} */}
-                  <Th
-                    textAlign="center"
-                    fontWeight="bold"
-                    fontSize="20"
-                    color="gray.900"
-                  >
-                    Nome
-                  </Th>
-                  <Th
-                    textAlign="center"
-                    fontWeight="bold"
-                    fontSize="20"
-                    color="gray.900"
-                  >
-                    CPF
-                  </Th>
-                  <Th
-                    textAlign="center"
-                    fontWeight="bold"
-                    fontSize="20"
-                    color="gray.900"
-                  >
-                    RG
-                  </Th>
-                  <Th></Th>
+                  {qrCodeInformation?.map((item) => {
+                    const data = item?.data;
+                    const namesData = data?.split(',');
+                    
+                    return (
+                      <>
+                        {namesData?.map((dataName) => {
+                          const traductionName = () => {
+                            if (dataName === 'name') {
+                              return 'Nome';
+                            } if (dataName === 'cpf') {
+                              return 'CPF';
+                            } if (dataName === 'rg') {
+                              return 'RG';
+                            } if (dataName === 'dataEmail') {
+                              return 'E-mail';
+                            } if (dataName === 'phoneNumber') {
+                              return 'Telefone/Celular';
+                            } if (dataName === 'birthDate') {
+                              return 'Data de Nascimento';
+                            } if (dataName === 'nationality') {
+                              return 'Nacionalidade';
+                            } if (dataName === 'cnh') {
+                              return 'CNH';
+                            } if (dataName === 'cep') {
+                              return 'CEP';
+                            } if (dataName === 'streetNumber') {
+                              return 'Rua n°';
+                            } if (dataName === 'civilStatus') {
+                              return 'Estado Civil';
+                            }
+                            return '';
+                          };
+                          
+                          return (
+                            <Th
+                              textAlign="center"
+                              fontWeight="bold"
+                              fontSize="20"
+                              color="gray.900"
+                            >
+                              {traductionName()}
+                            </Th>
+                          );
+                        })}
+                        <p></p>
+                      </>
+                    );
+                  })}
                 </Tr>
               </Thead>
               
@@ -143,7 +164,7 @@ export function InfomationQrCode() {
                         {!item?.cep ? null : <Td>{item?.cep}</Td>}
                         {!item?.streetNumber ? null : <Td>{item?.streetNumber}</Td>}
                         {!item?.civilStatus ? null : <Td>{item?.civilStatus}</Td>}
-                        <Td cursor="pointer"><CopyIcon /></Td>
+                        {!item?.name ? null : <Td cursor="pointer"><CopyIcon /></Td>}
                     </Tr>
                   );
                 })}
