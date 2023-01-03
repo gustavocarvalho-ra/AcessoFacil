@@ -134,7 +134,7 @@ export function InfomationQrCode() {
                             <Th
                               textAlign="center"
                               fontWeight="bold"
-                              fontSize="20"
+                              fontSize="18"
                               color="gray.900"
                             >
                               {traductionName()}

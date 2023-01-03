@@ -11,7 +11,7 @@ import {
   TbDoorExit, TbSquarePlus, 
 } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
-import { ModalQrCode } from '../../components/Requester/modal';
+import { ModalQrCode } from '../../components/Requester/modalNewQrCode';
 import { TableQrCode } from '../../components/Requester/table';
 import { AuthContext } from '../../contexts/Auth/AuthContext';
 
