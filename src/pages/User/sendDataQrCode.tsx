@@ -88,7 +88,7 @@ export function SendDataQrCode() {
             };
             documentsValues.push(`${item}: ${value(item)}`);
 
-            const onChangeQtdUsada = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+            const onChangeValue = (e: ChangeEvent<HTMLInputElement>, index: number) => {
               documentsValues[index] = `${item}: ${e.target.value}`;
 
               if (!documentsValues.includes(documentsValues[index])) {
@@ -97,7 +97,7 @@ export function SendDataQrCode() {
             };
             
             return (
-              <InputQrCode key={item} defaultValue={value(item)} type="text" label={label(item)} id={`documentsValue-${index + 1}`} onChange={(e) => onChangeQtdUsada(e, index)} />
+              <InputQrCode key={item} defaultValue={value(item)} type="text" label={label(item)} id={`documentsValue-${index + 1}`} onChange={(e) => onChangeValue(e, index)} />
             );
           })}
         </InputGroup>
