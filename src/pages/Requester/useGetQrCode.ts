@@ -29,7 +29,7 @@ export function useGetPhotoNewQrCode() {
 }
 
 interface PropsQrCode{
-  id: number & string;
+  id: number;
   user_id: number;
   name: string;
   data: string,
@@ -38,7 +38,6 @@ interface PropsQrCode{
 export function useGetQrCode() {
   const { userData } = useGetDataUser();
   const [qrCode, setQrCode] = useState<PropsQrCode[]>([]);
-
   const qrId = qrCode.map((item) => {
     return item.id;
   });
@@ -53,7 +52,6 @@ export function useGetQrCode() {
       try {
         const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
         setQrCode(data);
-        return data;
       } catch {
         console.log('Error trying to search for this category!');
       }

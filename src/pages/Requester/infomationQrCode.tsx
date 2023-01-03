@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, 
+  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Spinner, Skeleton, Stack, 
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
 import { useListUsers } from './useListUsers';
@@ -86,7 +86,13 @@ export function InfomationQrCode() {
               }, 
             }}
           >
-            <Table variant="striped" colorScheme="orange">
+            {!qrCodeInformation 
+              ? <Stack w="100%">
+                      <Skeleton height="20px" startColor="gray.100" endColor="orange.300" w="100%" />
+                      <Skeleton height="20px" />
+                      <Skeleton height="20px" />
+                    </Stack> 
+              : <Table variant="striped" colorScheme="orange">
               <Thead>
                 <Tr>
                   
@@ -120,26 +126,31 @@ export function InfomationQrCode() {
                   <Th></Th>
                 </Tr>
               </Thead>
+              
               <Tbody>
-                {qrCodeInformation?.map((item) => (
-                  <Tr>
-                    <Td>{item?.name}</Td>
-                    <Td>{item?.cpf}</Td>
-                    <Td>{item?.rg}</Td>
-                    <Td>{item?.dataEmail}</Td>
-                    <Td>{item?.phoneNumber}</Td>
-                    <Td>{item?.birthDate}</Td>
-                    <Td>{item?.nationality}</Td>
-                    <Td>{item?.cnh}</Td>
-                    <Td>{item?.cep}</Td>
-                    <Td>{item?.streetNumber}</Td>
-                    <Td>{item?.civilStatus}</Td>
-                    <Td cursor="pointer"><CopyIcon /></Td>
-                  </Tr>
-                ))}
+
+                {qrCodeInformation?.map((item) => {
+                  return (
+                    <Tr>
+                        {!item?.name ? null : <Td>{item?.name}</Td>}
+                        {!item?.cpf ? null : <Td>{item?.cpf}a</Td>}
+                        {!item?.rg ? null : <Td>{item?.rg}</Td>}
+                        {!item?.dataEmail ? null : <Td>{item?.dataEmail}</Td>}
+                        {!item?.phoneNumber ? null : <Td>{item?.phoneNumber}</Td>}
+                        {!item?.birthDate ? null : <Td>{item?.birthDate}</Td>}
+                        {!item?.nationality ? null : <Td>{item?.nationality}</Td>}
+                        {!item?.cnh ? null : <Td>{item?.cnh}</Td>}
+                        {!item?.cep ? null : <Td>{item?.cep}</Td>}
+                        {!item?.streetNumber ? null : <Td>{item?.streetNumber}</Td>}
+                        {!item?.civilStatus ? null : <Td>{item?.civilStatus}</Td>}
+                        <Td cursor="pointer"><CopyIcon /></Td>
+                    </Tr>
+                  );
+                })}
               </Tbody>
             
-            </Table>
+            </Table>}
+            
           </TableContainer>
 
         </Flex>

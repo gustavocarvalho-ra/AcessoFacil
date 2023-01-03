@@ -17,9 +17,9 @@ import { AuthContext } from '../../contexts/Auth/AuthContext';
 
 export function RequesterHome() {
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
   const { onOpen, onClose, isOpen } = useDisclosure();
 
-  const navigate = useNavigate();
   const handleLogOut = async () => {
     await auth.signOut();
     navigate('/');
@@ -27,8 +27,14 @@ export function RequesterHome() {
 
   return (
     <Flex align="center" flexDir="column">
-      <Flex as="header" align="center" justify="flex-end" pr={['30px', '65px']} h="110px" w="100%">
-        
+      <Flex
+        as="header"
+        align="center"
+        justify="flex-end"
+        pr={['30px', '65px']}
+        h="110px"
+        w="100%"
+      >
         <Link
           fontWeight="medium"
           fontSize={24}
@@ -37,7 +43,8 @@ export function RequesterHome() {
             color: 'orange.900',
           }}
         >
-          <Icon as={TbDoorExit} w="25px" h="25px" m={'-3px 8px'} />Sair
+          <Icon as={TbDoorExit} w="25px" h="25px" m={'-3px 8px'} />
+          Sair
         </Link>
       </Flex>
 
@@ -67,28 +74,29 @@ export function RequesterHome() {
           }}
           >
           <Table variant="striped" colorScheme="orange">
-          <Thead>
-            <Tr>
-              <Th>Nome</Th>
-              <Th>Dados</Th>
-              <Th>Respostas</Th>
-              <Th></Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <TableQrCode />
-          </Tbody>
-          
+            <Thead>
+              <Tr>
+                <Th>Nome</Th>
+                <Th>Dados</Th>
+                <Th>Respostas</Th>
+                <Th></Th>
+              </Tr>
+            </Thead>
+            
+            <Tbody>
+              <TableQrCode />
+            </Tbody>
           </Table>
         </TableContainer>
+
         <Center mt="100px" w="100%" h="auto">
           <Link onClick={onOpen}>
             <Icon as={TbSquarePlus} color="gray.700" w="25px" h="25px" mr="10px" />
           </Link>
         </Center>
-       <ModalQrCode isOpen={isOpen} onClose={onClose} />
+
+        <ModalQrCode isOpen={isOpen} onClose={onClose} />
       </Box>
-      
     </Flex>
   );
 }

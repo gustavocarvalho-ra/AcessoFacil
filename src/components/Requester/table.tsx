@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable consistent-return */
 import {
   Tr, Td, Icon, Link,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TbExternalLink, TbTrash } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../hooks/useApi';
@@ -19,17 +18,22 @@ export function TableQrCode() {
     navigate('/requesterHome/informationQrCode');
   }
 
-  // const listNumbersAnswers = async (id : number) => {
-  //   const qrId = id;
-  //   try {
-  //     const { data } = await api.get('/qrcode/numberanswers', { params: { qrId } });
-  //     setAnswers(data);
-  //   } catch {
-  //     console.log('Error trying to search for this category!');
-  //   }
-  // };
+  const listNumbersAnswers = (id : number) => {
+    const qrId = id;
+    const timer = setTimeout(async () => {
+      try {
+        const { data } = await api.get('/qrcode/numberanswers', { params: { qrId } });
+        setAnswers(data);
+      } catch {
+        console.log('Error trying to search for this category!');
+      }
+    }, 5000);
+    return () => {
+      clearTimeout(timer);
+    };
+  };
 
-  // const timer = setTimeout(async () => {
+  // 
   // //   try {
   // //     const { data } = await api.get(`api/solicitations/${id}`);
   // //     setResults(data.response.documents);
@@ -48,11 +52,9 @@ export function TableQrCode() {
   const handleDeleteQrCode = async (id : number) => {
     const qrId = id;
     try {
-      console.log(qrCode);
       await api.delete('/qrcode', { params: { qrId } });
       const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
       setQrCode(data);
-      console.log(qrCode);
     } catch {
       console.log('Error trying to search for this category!');
     }
@@ -97,7 +99,7 @@ export function TableQrCode() {
             <Td>{nameDocument}</Td>
             <Td textAlign="center">{answers.count}</Td>
             <Td w="100px">
-              <Link onClick={() => handleNavigate(item.id)}>
+              <Link onClick={() => handleNavigate()}>
                 <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />
               </Link>
               <Link onClick={() => handleDeleteQrCode(item?.id)}>
@@ -108,6 +110,5 @@ export function TableQrCode() {
         );
       })}
     </>
-   
   );
 }
