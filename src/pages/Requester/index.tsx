@@ -60,7 +60,7 @@ export function RequesterHome() {
         </Heading>
             
         <TableContainer
-          w={['290px', '500px', '800px']}
+          w={['290px', '500px', '1000px']}
           css={{
             '&::-webkit-scrollbar': {
               background: 'rgba(0, 0, 0, 0.16)',

@@ -64,13 +64,13 @@ export function InfomationQrCode() {
         justify="space-between"
         align="center"
         flexDir={['column', 'row']}
-        w={['100%', '1200px']}
+        w={['100%', '1500px']}
         h={['auto', '472px']}
         mt={['30px', '100px']}
         mb="100px"
       >
 
-        <Flex flexDir="column" align="center" w={['100%', '800px']} h="414px">
+        <Flex flexDir="column" align="center" w={['100%', '900px']} h="414px">
           <InputGroup w={['90%', '700px']} mb={['60px', '50px']}>
             <InputRightElement
               pointerEvents="none"
@@ -87,7 +87,7 @@ export function InfomationQrCode() {
           </InputGroup>
 
           <TableContainer
-            w={['310px', '500px', '800px']}
+            w={['310px', '500px', '1000px']}
             h="414px"
             overflowY="auto"
             css={{
@@ -151,7 +151,7 @@ export function InfomationQrCode() {
                             </Th>
                           );
                         })}
-                        <Th> </Th>
+                        <p></p>
                       </>
                     );
                   })}

@@ -19,13 +19,16 @@ export function useSendUserData() {
   const { handleSubmit } = useForm<Inputs>();
 
   const token = localStorage.getItem('authToken');
+
   const qrCodeData: any = localStorage.getItem('qrCodeData');
   const data: string[] = qrCodeData?.split(',');
+  const qrId = data.shift();
   const documentsValues: string[] = [];
-
+  
   const onSubmit: SubmitHandler<Inputs> = async () => {
+    // console.log(qrId);
+    
     try {
-      const qrId = 22;
       const response = await api.post('/qrcode/relate', { qrId, documentsValues }, {
         headers: {
           Authorization: `Bearer ${token}`, 
