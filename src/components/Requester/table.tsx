@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
@@ -32,10 +33,21 @@ export function TableQrCode() {
   } = useGetQrCode();
   const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCodeData[]>([]);
 
+  const getPhotoQrCode = async (qrId : number) => {
+    try {
+      const { data } = await api.get('/qrcode', { params: { qrId } });
+      localStorage.setItem('qrCodePhotoId', data.photo);
+      return data;
+    } catch {
+      console.log('Error trying to search for this category!');
+    }
+  };
+
   const useListUsers = async (qrId: number) => {
     try {
       const { data } = await api.get('/qrcode/answers', { params: { qrId } });
-      localStorage.setItem('qrCodeInformation', JSON.stringify(data));     
+      localStorage.setItem('qrCodeInformation', JSON.stringify(data));
+      getPhotoQrCode(qrId);     
       navigate('/requesterHome/informationQrCode');
     } catch {
       console.log('Error trying to search for this category!');

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/no-children-prop */
-import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
+import { Search2Icon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack, 
+  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
 
@@ -25,6 +25,8 @@ export function InfomationQrCode() {
   const qrCodeInformationString : any = localStorage.getItem('qrCodeInformation');
   const qrCodeInformation = JSON.parse(qrCodeInformationString);
   console.log(qrCodeInformation.data);
+
+  const photo : any = localStorage.getItem('qrCodePhotoId');
   
   // function handleClick() {
   //   navigator.clipboard.writeText(JSON.stringify(props));
@@ -85,7 +87,7 @@ export function InfomationQrCode() {
           </InputGroup>
 
           <TableContainer
-            w={['290px', '600px', '800px']}
+            w={['310px', '500px', '800px']}
             h="414px"
             overflowY="auto"
             css={{
@@ -99,8 +101,9 @@ export function InfomationQrCode() {
                 borderRadius: '16px',
               }, 
             }}
-          >
+          > 
             <Table variant="striped" colorScheme="orange">
+             
               <Thead>
                 <Tr>
                   {qrCodeInformation?.map((item : PropsQrCodeData) => {
@@ -154,7 +157,7 @@ export function InfomationQrCode() {
                   })}
                 </Tr>
               </Thead>
-              
+            
               <Tbody>
               {!qrCodeInformation 
                 ? <Stack w="100%">
@@ -178,7 +181,7 @@ export function InfomationQrCode() {
                         {!item?.cep ? null : <Td textAlign="center">{item?.cep}</Td>}
                         {!item?.streetNumber ? null : <Td textAlign="center">{item?.streetNumber}</Td>}
                        
-                        <Td cursor="pointer"><CopyIcon /></Td>
+                        {/* <Td cursor="pointer"><CopyIcon /></Td> */}
                     </Tr>
                   );
                 })}</>}
@@ -190,7 +193,7 @@ export function InfomationQrCode() {
         </Flex>
        
         <Center w="302px" h="302px" bg="orange.600" borderRadius="100%" mt={['70px', 0]}>
-          <Image src="{qrCodePhoto?.photo}" h="188px" w="188px" />
+          <Image src={photo} h="188px" w="188px" />
         </Center>
       
       </Flex>
