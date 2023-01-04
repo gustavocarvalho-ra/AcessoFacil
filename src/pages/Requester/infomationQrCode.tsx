@@ -1,16 +1,30 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/no-children-prop */
 import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
 import {
   Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack, 
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
-import { useListUsers } from './useListUsers';
-// import { useListUsers } from './useListUsers';
+
+interface PropsQrCodeData{
+  data: string;
+  name: string ;
+  cpf: string ;
+  rg: string ;
+  dataEmail: string;
+  phoneNumber: number;
+  birthDate: number;
+  nationality: string;
+  cnh: number;
+  cep: number;
+  streetNumber: string;
+  civilStatus: string;
+}
 
 export function InfomationQrCode() {
-  const { qrCodeInformation } = useListUsers();
-
-  console.log(qrCodeInformation);
+  const qrCodeInformationString : any = localStorage.getItem('qrCodeInformation');
+  const qrCodeInformation = JSON.parse(qrCodeInformationString);
+  console.log(qrCodeInformation.data);
   
   // function handleClick() {
   //   navigator.clipboard.writeText(JSON.stringify(props));
@@ -86,17 +100,10 @@ export function InfomationQrCode() {
               }, 
             }}
           >
-            {!qrCodeInformation 
-              ? <Stack w="100%">
-                      <Skeleton height="20px" startColor="gray.100" endColor="orange.300" w="100%" />
-                      <Skeleton height="20px" />
-                      <Skeleton height="20px" />
-                    </Stack> 
-              : <Table variant="striped" colorScheme="orange">
+            <Table variant="striped" colorScheme="orange">
               <Thead>
                 <Tr>
-                  
-                  {qrCodeInformation?.map((item) => {
+                  {qrCodeInformation?.map((item : PropsQrCodeData) => {
                     const data = item?.data;
                     const namesData = data?.split(',');
                     
@@ -141,7 +148,7 @@ export function InfomationQrCode() {
                             </Th>
                           );
                         })}
-                        <p></p>
+                        <Th> </Th>
                       </>
                     );
                   })}
@@ -149,29 +156,35 @@ export function InfomationQrCode() {
               </Thead>
               
               <Tbody>
-
-                {qrCodeInformation?.map((item) => {
+              {!qrCodeInformation 
+                ? <Stack w="100%">
+                      <Skeleton height="20px" startColor="gray.100" endColor="orange.300" w="100%" />
+                      <Skeleton height="20px" />
+                      <Skeleton height="20px" />
+                    </Stack> 
+                : <>
+                {qrCodeInformation?.map((item : PropsQrCodeData) => {
                   return (
                     <Tr>
-                        {!item?.name ? null : <Td>{item?.name}</Td>}
-                        {!item?.cpf ? null : <Td>{item?.cpf}a</Td>}
-                        {!item?.rg ? null : <Td>{item?.rg}</Td>}
-                        {!item?.dataEmail ? null : <Td>{item?.dataEmail}</Td>}
-                        {!item?.phoneNumber ? null : <Td>{item?.phoneNumber}</Td>}
-                        {!item?.birthDate ? null : <Td>{item?.birthDate}</Td>}
-                        {!item?.nationality ? null : <Td>{item?.nationality}</Td>}
-                        {!item?.cnh ? null : <Td>{item?.cnh}</Td>}
-                        {!item?.cep ? null : <Td>{item?.cep}</Td>}
-                        {!item?.streetNumber ? null : <Td>{item?.streetNumber}</Td>}
-                        {!item?.civilStatus ? null : <Td>{item?.civilStatus}</Td>}
-                        {!item?.name ? null : <Td cursor="pointer"><CopyIcon /></Td>}
+                        {!item?.name ? null : <Td textAlign="center">{item?.name}</Td>}
+                        {!item?.cpf ? null : <Td textAlign="center">{item?.cpf}a</Td>}
+                        {!item?.rg ? null : <Td textAlign="center">{item?.rg}</Td>}
+                        {!item?.dataEmail ? null : <Td textAlign="center">{item?.dataEmail}</Td>}
+                        {!item?.phoneNumber ? null : <Td textAlign="center">{item?.phoneNumber}</Td>}
+                        {!item?.civilStatus ? null : <Td textAlign="center">{item?.civilStatus}</Td>}
+                        {!item?.birthDate ? null : <Td textAlign="center">{item?.birthDate}</Td>}
+                        {!item?.nationality ? null : <Td textAlign="center">{item?.nationality}</Td>}
+                        {!item?.cnh ? null : <Td textAlign="center">{item?.cnh}</Td>}
+                        {!item?.cep ? null : <Td textAlign="center">{item?.cep}</Td>}
+                        {!item?.streetNumber ? null : <Td textAlign="center">{item?.streetNumber}</Td>}
+                       
+                        <Td cursor="pointer"><CopyIcon /></Td>
                     </Tr>
                   );
-                })}
+                })}</>}
               </Tbody>
             
-            </Table>}
-            
+            </Table>
           </TableContainer>
 
         </Flex>
