@@ -31,6 +31,7 @@ export function useGetPhotoNewQrCode() {
 interface PropsQrCode{
   id: number;
   user_id: number;
+  numberAnswers: number;
   name: string;
   data: string,
 }
@@ -56,6 +57,14 @@ export function useGetQrCode() {
         console.log('Error trying to search for this category!');
       }
     })();
+
+    const timer = setInterval(async () => {
+      const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
+      setQrCode(data);
+    }, 300000);
+    return () => {
+      clearInterval(timer);
+    };
   }, []);
 
   return {

@@ -85,7 +85,7 @@ export function SendDataQrCode() {
               }
               return false;
             };
-            documentsValues.push(`${item}: ${value(item)}`);
+            documentsValues.push(`${item}:${value(item)}`);
 
             const onChangeValue = (e: ChangeEvent<HTMLInputElement>, index: number) => {
               documentsValues[index] = `${item}:${e.target.value}`;
