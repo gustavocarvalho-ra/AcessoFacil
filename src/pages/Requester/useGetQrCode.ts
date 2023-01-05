@@ -31,7 +31,7 @@ export function useGetPhotoNewQrCode() {
 interface PropsQrCode{
   id: number;
   user_id: number;
-  numberAnswers: number;
+  answers: number;
   name: string;
   data: string,
 }

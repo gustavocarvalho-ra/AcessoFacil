@@ -11,27 +11,11 @@ import { useNavigate } from 'react-router-dom';
 import { api } from '../../hooks/useApi';
 import { useGetQrCode } from '../../pages/Requester/useGetQrCode';
 
-interface PropsQrCodeData{
-  data: string;
-  name: string ;
-  cpf: string ;
-  rg: string ;
-  dataEmail: string;
-  phoneNumber: number;
-  birthDate: number;
-  nationality: string;
-  cnh: number;
-  cep: number;
-  streetNumber: string;
-  civilStatus: string;
-}
-
 export function TableQrCode() {
   const navigate = useNavigate();
   const {
     qrCode, setQrCode, userId, qrId,
   } = useGetQrCode();
-  const [qrCodeInformation, setQrCodeInformation] = useState<PropsQrCodeData[]>([]);
 
   const getPhotoQrCode = async (qrId : number) => {
     try {
@@ -52,7 +36,6 @@ export function TableQrCode() {
     } catch {
       console.log('Error trying to search for this category!');
     }
-    return { qrCodeInformation };
   };
 
   const handleDeleteQrCode = async (id : number) => {
@@ -102,7 +85,7 @@ export function TableQrCode() {
           <Tr key={item.id}>
             <Td>{item?.name}</Td>
             <Td>{nameDocument}</Td>
-            <Td textAlign="center">0item?.numberAnwers</Td>
+            <Td textAlign="center">{item?.answers}</Td>
             <Td w="100px">
               <Link onClick={() => useListUsers(item?.id)}>
                 <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />

@@ -1,24 +1,27 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/no-children-prop */
-import { Search2Icon } from '@chakra-ui/icons';
+import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack,
+  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack, Text,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
 
 interface PropsQrCodeData{
   data: string;
-  name: string ;
-  cpf: string ;
-  rg: string ;
-  dataEmail: string;
-  phoneNumber: number;
-  birthDate: number;
-  nationality: string;
-  cnh: number;
-  cep: number;
-  streetNumber: string;
-  civilStatus: string;
+  documents: {
+    name: string;
+    cpf: string;
+    rg: string;
+    dataEmail: string;
+    phoneNumber: number;
+    birthDate: number;
+    nationality: string;
+    cnh: number;
+    cep: number;
+    streetNumber: string;
+    civilStatus: string;
+  }
+
 }
 
 export function InfomationQrCode() {
@@ -87,7 +90,7 @@ export function InfomationQrCode() {
           </InputGroup>
 
           <TableContainer
-            w={['310px', '500px', '1000px']}
+            w={['310px', '600px', '1000px']}
             h="414px"
             overflowY="auto"
             css={{
@@ -159,32 +162,24 @@ export function InfomationQrCode() {
               </Thead>
             
               <Tbody>
-              {!qrCodeInformation 
-                ? <Stack w="100%">
-                      <Skeleton height="20px" startColor="gray.100" endColor="orange.300" w="100%" />
-                      <Skeleton height="20px" />
-                      <Skeleton height="20px" />
-                    </Stack> 
-                : <>
                 {qrCodeInformation?.map((item : PropsQrCodeData) => {
                   return (
                     <Tr>
-                        {!item?.name ? null : <Td textAlign="center">{item?.name}</Td>}
-                        {!item?.cpf ? null : <Td textAlign="center">{item?.cpf}a</Td>}
-                        {!item?.rg ? null : <Td textAlign="center">{item?.rg}</Td>}
-                        {!item?.dataEmail ? null : <Td textAlign="center">{item?.dataEmail}</Td>}
-                        {!item?.phoneNumber ? null : <Td textAlign="center">{item?.phoneNumber}</Td>}
-                        {!item?.civilStatus ? null : <Td textAlign="center">{item?.civilStatus}</Td>}
-                        {!item?.birthDate ? null : <Td textAlign="center">{item?.birthDate}</Td>}
-                        {!item?.nationality ? null : <Td textAlign="center">{item?.nationality}</Td>}
-                        {!item?.cnh ? null : <Td textAlign="center">{item?.cnh}</Td>}
-                        {!item?.cep ? null : <Td textAlign="center">{item?.cep}</Td>}
-                        {!item?.streetNumber ? null : <Td textAlign="center">{item?.streetNumber}</Td>}
-                       
-                        {/* <Td cursor="pointer"><CopyIcon /></Td> */}
+                      {!item.documents?.name ? null : <Td textAlign="center">{item.documents?.name}</Td>}
+                      {!item.documents?.cpf ? null : <Td textAlign="center">{item.documents?.cpf}a</Td>}
+                      {!item.documents?.rg ? null : <Td textAlign="center">{item.documents?.rg}</Td>}
+                      {!item.documents?.dataEmail ? null : <Td textAlign="center">{item.documents?.dataEmail}</Td>}
+                      {!item.documents?.phoneNumber ? null : <Td textAlign="center">{item.documents?.phoneNumber}</Td>}
+                      {!item.documents?.civilStatus ? null : <Td textAlign="center">{item.documents?.civilStatus}</Td>}
+                      {!item.documents?.birthDate ? null : <Td textAlign="center">{item.documents?.birthDate}</Td>}
+                      {!item.documents?.nationality ? null : <Td textAlign="center">{item.documents?.nationality}</Td>}
+                      {!item.documents?.cnh ? null : <Td textAlign="center">{item.documents?.cnh}</Td>}
+                      {!item.documents?.cep ? null : <Td textAlign="center">{item.documents?.cep}</Td>}
+                      {!item.documents?.streetNumber ? null : <Td textAlign="center">{item.documents?.streetNumber}</Td>}
+                      {!item.documents ? null : <Td cursor="pointer"><CopyIcon /></Td>}
                     </Tr>
                   );
-                })}</>}
+                })}
               </Tbody>
             
             </Table>
