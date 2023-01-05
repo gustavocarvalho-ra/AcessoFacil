@@ -2,9 +2,10 @@
 /* eslint-disable react/no-children-prop */
 import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td,
+  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
+import { MdOutlineZoomOutMap } from 'react-icons/md';
 
 interface PropsQrCodeData{
   data: string;
@@ -25,6 +26,7 @@ interface PropsQrCodeData{
 }
 
 export function InfomationQrCode() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const qrCodeInformationString : any = localStorage.getItem('qrCodeInformation');
   const qrCodeInformation = JSON.parse(qrCodeInformationString);
   console.log(qrCodeInformation.data);
@@ -186,10 +188,30 @@ export function InfomationQrCode() {
           </TableContainer>
 
         </Flex>
-       
-        <Center w="302px" h="302px" bg="orange.600" borderRadius="100%" mt={['70px', 0]}>
-          <Image src={photo} h="188px" w="188px" />
-        </Center>
+
+        <Flex alignItems="flex-end">
+          <Center w="302px" h="302px" bg="orange.600" borderRadius="100%" mt={['70px', 0]}>
+            <Image src={photo} h="188px" w="188px" />
+          </Center>
+          <Button onClick={onOpen} position="absolute" bg="transparent">
+            <MdOutlineZoomOutMap />
+          </Button>
+        </Flex>
+
+        <Modal isOpen={isOpen} onClose={onClose} size="full">
+          <ModalOverlay />
+          <ModalContent alignItems="center">
+            <ModalHeader fontSize={[20, 30]} color="orange.900" mt="50px">
+              Escaneie o Qr Code
+            </ModalHeader>
+            <ModalCloseButton fontSize={18} m={[1, '30px']} />
+
+            <ModalBody display="flex" alignItems="center">
+              <Image src={photo} h={['188px', '350px']} w={['188px', '350px']} />
+            </ModalBody>
+
+          </ModalContent>
+        </Modal>
       
       </Flex>
       
