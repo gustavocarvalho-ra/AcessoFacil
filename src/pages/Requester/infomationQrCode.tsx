@@ -2,7 +2,7 @@
 /* eslint-disable react/no-children-prop */
 import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Skeleton, Stack, Text,
+  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td,
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
 
