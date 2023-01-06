@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 export function ScannerQrCode() {
   const [removeButton, setRemoveButton] = useState('Nenhum QrCode encontrado');
-  const [qrCodeData, setQrCodeData] = useState('No result');
-  const qrCode: any = qrCodeData.split('-');
+  const [qrCodeData, setQrCodeData] = useState<string | undefined>('No result');
+  const qrCode: any = qrCodeData?.split('-');
 
   localStorage.setItem('qrCodeData', qrCode);
 
@@ -29,7 +29,7 @@ export function ScannerQrCode() {
       <QrReader
         onResult={async (result) => {
           if (result) {
-            await setQrCodeData(result?.text);
+            setQrCodeData(result.getText());
             setRemoveButton('enviar');
           }
         }}

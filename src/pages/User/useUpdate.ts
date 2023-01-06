@@ -25,7 +25,7 @@ interface Inputs {
 
 export function useUpdate() {
   const toast = useToast();
-  const [avatarUser, setAvatarUser] = useState<File>();
+  const [avatarUser, setAvatarUser] = useState<File | Blob>();
   const [preview, setPreview] = useState();
   const storageData = localStorage.getItem('authToken');
 
@@ -53,7 +53,9 @@ export function useUpdate() {
   };
 
   const dataPhoto = new FormData();
-  dataPhoto.append('avatar', avatarUser);
+  if (avatarUser) {
+    dataPhoto.append('avatar', avatarUser);
+  }
 
   async function FilePhoto() {
     try {

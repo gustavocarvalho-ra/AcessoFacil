@@ -6,7 +6,6 @@ import { Login } from './pages';
 import { Error404 } from './pages/Error/error';
 import { Registration } from './pages/Registration';
 import { RequesterHome } from './pages/Requester';
-import { Private } from './pages/teste/paginaprivada';
 import { UserHome } from './pages/User';
 import { SendDataQrCode } from './pages/User/sendDataQrCode';
 import { UserProfile } from './pages/User/profile';
@@ -20,7 +19,6 @@ export default function RouterApp() {
         <Route path="/" element={<HeaderForm />}>
           <Route index element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/private" element={<RequireAuth><Private /></RequireAuth>} />
         </Route>
 
         <Route 
