@@ -27,10 +27,12 @@ export function TableQrCode() {
     }
   };
 
-  const useListUsers = async (qrId: number) => {
+  const useListUsers = async (qrId: number, itemName : string) => {
     try {
       const { data } = await api.get('/qrcode/answers', { params: { qrId } });
+      const name = itemName;
       localStorage.setItem('qrCodeInformation', JSON.stringify(data));
+      localStorage.setItem('nameQrCode', name);
       getPhotoQrCode(qrId);     
       navigate('/requesterHome/informationQrCode');
     } catch {
@@ -87,7 +89,7 @@ export function TableQrCode() {
             <Td>{nameDocument}</Td>
             <Td textAlign="center">{item?.answers}</Td>
             <Td w="100px">
-              <Link onClick={() => useListUsers(item?.id)}>
+              <Link onClick={() => useListUsers(item?.id, item?.name)}>
                 <Icon as={TbExternalLink} color="gray.700" w="20px" h="20px" mr="20px" />
               </Link>
               <Link onClick={() => handleDeleteQrCode(item?.id)}>

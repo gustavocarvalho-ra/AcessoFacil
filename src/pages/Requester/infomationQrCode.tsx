@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/no-children-prop */
-import { CopyIcon, Search2Icon } from '@chakra-ui/icons';
+import { CopyIcon } from '@chakra-ui/icons';
 import {
-  Center, Flex, Heading, Icon, Link, Image, Input, InputGroup, InputRightElement, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure,
+  Center, Flex, Heading, Icon, Link, Image, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure, 
 } from '@chakra-ui/react';
 import { VscReply } from 'react-icons/vsc';
 import { MdOutlineZoomOutMap } from 'react-icons/md';
@@ -29,7 +29,7 @@ export function InfomationQrCode() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const qrCodeInformationString : any = localStorage.getItem('qrCodeInformation');
   const qrCodeInformation = JSON.parse(qrCodeInformationString);
-  console.log(qrCodeInformation.data);
+  const name = localStorage.getItem('nameQrCode');
 
   const photo : any = localStorage.getItem('qrCodePhotoId');
   
@@ -61,7 +61,7 @@ export function InfomationQrCode() {
           color="orange.900"
           textAlign="center"
         > 
-          QR Code - Cadastro 
+          QR Code - {name} 
         </Heading>
       </Flex>
 
@@ -75,25 +75,11 @@ export function InfomationQrCode() {
         mb="100px"
       >
 
-        <Flex flexDir="column" align="center" w={['100%', '900px']} h="414px">
-          <InputGroup w={['90%', '700px']} mb={['60px', '50px']}>
-            <InputRightElement
-              pointerEvents="none"
-              children={<Search2Icon color="gray.700" />}
-            />
-
-            <Input
-              type="text"
-              variant="flushed"
-              colorScheme="blackAlpha"
-              placeholder="Pesquisar usúario..." 
-              focusBorderColor="none"
-            />
-          </InputGroup>
+        <Flex align="center" w={['100%', '900px']}>
 
           <TableContainer
             w={['310px', '600px', '1000px']}
-            h="414px"
+            h="300px"
             overflowY="auto"
             css={{
               '&::-webkit-scrollbar': {
@@ -156,7 +142,7 @@ export function InfomationQrCode() {
                             </Th>
                           );
                         })}
-                        <p></p>
+                        <div />
                       </>
                     );
                   })}
