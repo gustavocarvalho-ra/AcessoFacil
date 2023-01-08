@@ -14,7 +14,7 @@ import { useGetQrCode } from '../../pages/Requester/useGetQrCode';
 export function TableQrCode() {
   const navigate = useNavigate();
   const {
-    qrCode, setQrCode, userId, qrId,
+    qrCode, setQrCode, userId, 
   } = useGetQrCode();
 
   const getPhotoQrCode = async (qrId : number) => {
