@@ -21,7 +21,7 @@ export function UserProfile() {
   return (
     <Flex align="center" flexDir="column">
 
-      <HeaderLinkBack route="/userHome" />
+      <HeaderLinkBack route="/user-home" />
 
       <Flex
         as="form"

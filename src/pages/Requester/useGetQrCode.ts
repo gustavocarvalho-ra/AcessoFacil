@@ -14,7 +14,7 @@ export function useGetPhotoNewQrCode() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get('/qrcode', { params: { qrId } });
+        const { data } = await api.get('/qrcode/image', { params: { qrId } });
         setQrCodePhoto(data);
         return data;
       } catch {
@@ -51,7 +51,7 @@ export function useGetQrCode() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
+        const { data } = await api.get('/qrcode', { params: { userId } });
         setQrCode(data);
       } catch {
         console.log('Error trying to search for this category!');
@@ -59,7 +59,7 @@ export function useGetQrCode() {
     })();
 
     const timer = setInterval(async () => {
-      const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
+      const { data } = await api.get('/qrcode', { params: { userId } });
       setQrCode(data);
     }, 300000);
     return () => {

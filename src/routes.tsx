@@ -22,7 +22,7 @@ export default function RouterApp() {
         </Route>
 
         <Route 
-          path="/requesterHome"
+          path="/requester-home"
           element={
             <RequireAuth>
               <RequireAuthPermission permission="solicitante">
@@ -32,7 +32,7 @@ export default function RouterApp() {
           } 
         />
         <Route 
-          path="/requesterHome/newQrCode"
+          path="/requester-home/new-qrcode"
           element={
             <RequireAuth>
               <RequireAuthPermission permission="solicitante">
@@ -42,7 +42,7 @@ export default function RouterApp() {
           } 
         />
         <Route 
-          path="/requesterHome/informationQrCode"
+          path="/requester-home/information-qrcode"
           element={
             <RequireAuth>
               <RequireAuthPermission permission="solicitante">
@@ -52,7 +52,7 @@ export default function RouterApp() {
           } 
         />
         <Route 
-          path="/userHome"
+          path="/user-home"
           element={
             <RequireAuth>
               <RequireAuthPermission permission="usuario">
@@ -62,7 +62,7 @@ export default function RouterApp() {
           }
         />
         <Route 
-          path="/userHome/userProfile"
+          path="/user-home/user-profile"
           element={
             <RequireAuth>
               <RequireAuthPermission permission="usuario">
@@ -72,7 +72,7 @@ export default function RouterApp() {
           }
         />
         <Route 
-          path="/userHome/dataQrCode"
+          path="/user-home/data-qrcode"
           element={
             <RequireAuth>
               <RequireAuthPermission permission="usuario">

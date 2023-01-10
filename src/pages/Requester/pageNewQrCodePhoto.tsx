@@ -10,7 +10,7 @@ export function PageNewQrCode() {
 
   return (
     <Box w="100%" h="100vh">
-      <HeaderLinkBack route="/requesterHome" />
+      <HeaderLinkBack route="/requester-home" />
       <Flex h={['100vh', '800px']} flexDir="column" align="center" justify="center">
         <Center 
           w={['100%', '478px']}

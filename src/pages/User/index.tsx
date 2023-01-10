@@ -26,7 +26,7 @@ export function UserHome() {
   const { photo } = useGetPhotoUser();
   
   const handleEditProfile = async () => {
-    navigate('userProfile');
+    navigate('user-profile');
   };
 
   return (

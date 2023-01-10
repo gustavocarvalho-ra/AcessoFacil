@@ -19,7 +19,7 @@ export function SendDataQrCode() {
   return (
     <Box as="section" h="100vh">
       
-      <HeaderLinkBack route="/userHome" />
+      <HeaderLinkBack route="/user-home" />
 
       <Container
         as="form"

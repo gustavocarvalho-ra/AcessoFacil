@@ -37,9 +37,9 @@ export function Login() {
   
   useEffect(() => {
     if (auth.user?.permission === 'usuario') { 
-      navigate('/userHome'); 
+      navigate('/user-home'); 
     } if (auth.user?.permission === 'solicitante') {
-      navigate('/requesterHome');
+      navigate('/requester-home');
     }
   }, [auth]);
 

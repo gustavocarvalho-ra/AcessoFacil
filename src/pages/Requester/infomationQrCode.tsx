@@ -43,7 +43,7 @@ export function InfomationQrCode() {
           w="230px"
           position={['inherit', 'absolute']}
           left="66px"
-          href="/requesterHome"
+          href="/requester-home"
           fontWeight="medium"
           fontSize={24}
           _hover={{

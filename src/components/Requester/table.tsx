@@ -19,7 +19,7 @@ export function TableQrCode() {
 
   const getPhotoQrCode = async (qrId : number) => {
     try {
-      const { data } = await api.get('/qrcode', { params: { qrId } });
+      const { data } = await api.get('/qrcode/image', { params: { qrId } });
       localStorage.setItem('qrCodePhotoId', data.photo);
       return data;
     } catch {
@@ -34,7 +34,7 @@ export function TableQrCode() {
       localStorage.setItem('qrCodeInformation', JSON.stringify(data));
       localStorage.setItem('nameQrCode', name);
       getPhotoQrCode(qrId);     
-      navigate('/requesterHome/informationQrCode');
+      navigate('/requester-home/information-qrcode');
     } catch {
       console.log('Error trying to search for this category!');
     }

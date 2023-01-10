@@ -26,7 +26,7 @@ export function useTableUsers() {
       localStorage.setItem('qrCodeInformation', JSON.stringify(data));
       localStorage.setItem('nameQrCode', name);
       getPhotoQrCode(qrId);     
-      navigate('/requesterHome/informationQrCode');
+      navigate('/requester-home/information-qrcode');
     } catch {
       console.log('Error trying to search for this category!');
     }

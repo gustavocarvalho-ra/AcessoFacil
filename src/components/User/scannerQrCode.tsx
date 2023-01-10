@@ -16,7 +16,7 @@ export function ScannerQrCode() {
 
   const handleSendButton = (text : string) => {
     if (text === 'enviar') {
-      navigate('dataQrCode');
+      navigate('data-qrcode');
     }
   };
 

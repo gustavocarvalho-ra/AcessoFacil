@@ -53,7 +53,7 @@ export function useNewQrCode() {
         duration: 1700,
         isClosable: true,
       });
-      navigate('/requesterHome/newQrCode');
+      navigate('/requester-home/new-qrcode');
     } catch (err) {
       toast({
         title: 'Não foi possivel criar o qr code, tente novamente mais tarde',

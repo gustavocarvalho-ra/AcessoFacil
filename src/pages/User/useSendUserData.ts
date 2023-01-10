@@ -35,7 +35,7 @@ export function useSendUserData() {
         },
       });
       
-      navigate('/userHome');
+      navigate('/user-home');
       toast({
         title: 'Enviado com sucesso!',
         variant: 'solid',
