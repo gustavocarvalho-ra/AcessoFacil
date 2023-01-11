@@ -2,12 +2,12 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable consistent-return */
 import {
-  Flex, Link, Stack, Text, useToast, 
+  Flex, Stack, Text, useToast, 
 } from '@chakra-ui/react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ButtonForm } from '../components/Form/button';
 import { Input } from '../components/Form/input';
 import { signInSchema } from '../validation/schema';
@@ -106,7 +106,7 @@ export function Login() {
         
         <ButtonForm text="ENTRAR" />
 
-        <Text mt={1} fontSize={16}>primeira vez? <Link href="/registration" color="orange.800">Cadastre-se</Link>
+        <Text mt={1} fontSize={16}>primeira vez? <Link to="/registration" color="orange.800">Cadastre-se</Link>
         </Text>
       </Flex>
     </Flex>
