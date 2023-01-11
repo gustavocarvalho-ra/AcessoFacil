@@ -1,7 +1,7 @@
 # Acesso Fácil
 
-![](https://img.shields.io/badge/status-completed-orange)
-##
+![](https://img.shields.io/badge/status-development-orange)
+
 Uma breve descrição sobre o que esse projeto faz e para quem ele é
 
 ## Stack utilizada
@@ -17,15 +17,20 @@ Uma breve descrição sobre o que esse projeto faz e para quem ele é
 
 ##
 
-![App Login Screenshot](https://user-images.githubusercontent.com/99972177/211621915-27e37b34-6048-4762-a064-34f600b57fab.png)
+### requester home
+
+![Home requester Screenshot](https://user-images.githubusercontent.com/99972177/211621915-27e37b34-6048-4762-a064-34f600b57fab.png)
 
 ##
 
-![App Login Screenshot](https://user-images.githubusercontent.com/99972177/211622346-6898ba53-2609-49d3-8086-07f6c4bb47c8.png)
+### user home
+
+![home user](https://user-images.githubusercontent.com/99972177/211816043-37463b19-88ec-46b2-9dd5-1f16bd35e356.png)
+
 
 ## Instalação
 
-depois de clonar o repositorio - AcessoFacil
+Depois de clonar o repositorio - AcessoFacil
 
 ```bash
     yarn install
