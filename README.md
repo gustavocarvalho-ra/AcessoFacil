@@ -6,7 +6,7 @@ O Acesso Fácil é uma aplicação com intuito de facilitar o acesso das pessoas
 
 ## Stack utilizada
 
-**Front-end:** React, Chakra UI
+**Front-end:** React, Chakra UI, yup(validation), eslint
 
 **Back-end:** Node, Express
 
