@@ -4,6 +4,7 @@ import { CopyIcon } from '@chakra-ui/icons';
 import {
   Center, Flex, Heading, Icon, Link, Image, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure, 
 } from '@chakra-ui/react';
+import { Link as LinkRouterDom } from 'react-router-dom';
 import { VscReply } from 'react-icons/vsc';
 import { MdOutlineZoomOutMap } from 'react-icons/md';
 
@@ -40,10 +41,11 @@ export function InfomationQrCode() {
     <Flex flexDir="column" align="center" w="100%">
       <Flex h="177px" align="center" justify={['space-evenly', 'center']} flexDir={['column', 'row']}>
         <Link
+          as={LinkRouterDom}
           w="230px"
           position={['inherit', 'absolute']}
           left="66px"
-          href="/requester-home"
+          to="/requester-home"
           fontWeight="medium"
           fontSize={24}
           _hover={{
