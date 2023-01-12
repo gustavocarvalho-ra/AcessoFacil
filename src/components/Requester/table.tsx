@@ -44,7 +44,7 @@ export function TableQrCode() {
     const qrId = id;
     try {
       await api.delete('/qrcode', { params: { qrId } });
-      const { data } = await api.get('/qrcode/listqrcode', { params: { userId } });
+      const { data } = await api.get('/qrcode', { params: { userId } });
       setQrCode(data);
     } catch {
       console.log('Error trying to search for this category!');
