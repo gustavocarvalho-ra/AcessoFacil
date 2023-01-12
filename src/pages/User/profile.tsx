@@ -56,7 +56,7 @@ export function UserProfile() {
         </FormLabel>
 
         <InputEditable
-          value={userData?.user.name}
+          value={userData?.user?.name}
           label="Name"
           type="text"
           {...register('name')}
@@ -74,62 +74,62 @@ export function UserProfile() {
 
         <VStack spacing="18px" w="100%" mb="61px">
           <InputEditable
-            value={userData?.user.cpf}
+            value={userData?.user?.cpf}
             label="CPF"
             type="number" 
             {...register('cpf')}
             errors={errors.cpf} 
           />
           <InputEditable
-            value={userData?.user.rg}
+            value={userData?.user?.rg}
             label="RG"
             type="number" 
             {...register('rg')}
             errors={errors.rg} 
           />
           <InputEditable
-            value={userData?.user.dataEmail}
+            value={userData?.user?.dataEmail}
             label="E-mail"
             type="email" 
             {...register('dataEmail')}
             errors={errors.dataEmail} 
           />
           <InputEditable
-            value={userData?.user.phoneNumber}
+            value={userData?.user?.phoneNumber}
             label="Telefone"
             type="tel"
             {...register('phoneNumber')}
             errors={errors.phoneNumber}  
           />
           <InputEditable
-            value={userData?.user.birthDate}
+            value={userData?.user?.birthDate}
             label="Data de Nascimento"
             type="date"
             max="2030-12-31"
             {...register('birthDate')}
           />
           <InputEditable
-            value={userData?.user.nationality}
+            value={userData?.user?.nationality}
             label="Naturalidade"
             type="text" 
             {...register('nationality')}
           />
           <InputEditable
-            value={userData?.user.cnh}
+            value={userData?.user?.cnh}
             label="N° CNH"
             type="number" 
             {...register('cnh')}
             errors={errors.cnh}
           />
           <InputEditable
-            value={userData?.user.cep}
+            value={userData?.user?.cep}
             label="CEP"
             type="number" 
             {...register('cep')}
             errors={errors.cep}
           />
           <InputEditable
-            value={userData?.user.streetNumber}
+            value={userData?.user?.streetNumber}
             label="Rua N°"
             type="text" 
             {...register('streetNumber')}
@@ -146,7 +146,7 @@ export function UserProfile() {
             </FormLabel>
             <Select
               {...register('civilStatus')}
-              defaultValue={userData?.user.civilStatus}
+              defaultValue={userData?.user?.civilStatus}
               placeholder="Selecione uma opção"
               variant="flushed"
               focusBorderColor="orange.900"
@@ -155,7 +155,7 @@ export function UserProfile() {
                 borderBottom: '2px solid #9D5C0D',
               }}
             >
-              <option value={userData?.user.civilStatus} selected disabled>{userData?.user.civilStatus}</option>
+              <option value={userData?.user?.civilStatus} selected disabled>{userData?.user?.civilStatus}</option>
               <option value="solteira(o)">Solteira(o)</option>
               <option value="casada(o)">Casada(o)</option>
               <option value="divorciada(o)">Divorciada(o)</option>
