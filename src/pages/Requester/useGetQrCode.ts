@@ -43,10 +43,10 @@ export function useGetQrCode() {
     return item.id;
   });
 
-  if (userData?.user.id !== undefined) {
-    localStorage.setItem('userid', userData?.user.id);
+  if (userData?.user?.id !== undefined) {
+    localStorage.setItem('userid', userData?.user?.id);
   }
-  const userId = localStorage.getItem('id');
+  const userId = localStorage.getItem('userid');
   
   useEffect(() => {
     (async () => {

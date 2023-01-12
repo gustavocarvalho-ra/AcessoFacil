@@ -106,7 +106,7 @@ export function Login() {
         
         <ButtonForm text="ENTRAR" />
 
-        <Text mt={1} fontSize={16}>primeira vez? <Link to="/registration" color="orange.800">Cadastre-se</Link>
+        <Text mt={1} fontSize={16}>primeira vez? <Link to="/registration" style={{ color: '#E26A2C' }}>Cadastre-se</Link>
         </Text>
       </Flex>
     </Flex>

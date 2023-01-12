@@ -4,7 +4,7 @@
 import {
   Box,
   Center,
-  Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure,
+  Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure, Text,
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import {
@@ -35,17 +35,18 @@ export function RequesterHome() {
         h="110px"
         w="100%"
       >
-        <Link
+        <Text
           fontWeight="medium"
           fontSize={24}
           onClick={handleLogOut}
           _hover={{
             color: 'orange.900',
+            cursor: 'pointer',
           }}
         >
           <Icon as={TbDoorExit} w="25px" h="25px" m={'-3px 8px'} />
           Sair
-        </Link>
+        </Text>
       </Flex>
 
       <Box mt="60px">

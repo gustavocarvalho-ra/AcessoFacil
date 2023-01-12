@@ -50,7 +50,7 @@ export interface PropsDataUser{
 }
 
 export function useGetDataUser() {
-  const [userData, setUserData] = useState<PropsDataUser>();
+  const [userData, setUserData] = useState<PropsDataUser>({} as PropsDataUser);
   const storageData = localStorage.getItem('authToken');
 
   useEffect(() => {
