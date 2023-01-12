@@ -1,11 +1,8 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-useless-fragment */
 import {
   Tr, Td, Icon, Link,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
 import { TbExternalLink, TbTrash } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../hooks/useApi';
