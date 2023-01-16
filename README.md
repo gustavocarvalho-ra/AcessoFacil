@@ -8,6 +8,7 @@ O Acesso Fácil é uma aplicação com intuito de facilitar o acesso das pessoas
 **Front-end:** 
 - React ⚛️
 - Chakra UI ⚡️
+- Typescript <img src="https://cdn3.emoji.gg/emojis/8584-typescript.png" width="18px" height="18px" alt="TypeScript">
 - Yup(validation)
 - Eslint
 
