@@ -1,6 +1,3 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable consistent-return */
 import {
   Flex, Stack, Text, useToast, 
 } from '@chakra-ui/react';
@@ -106,8 +103,12 @@ export function Login() {
         
         <ButtonForm text="ENTRAR" />
 
-        <Text mt={1} fontSize={16}>primeira vez? <Link to="/registration" style={{ color: '#E26A2C' }}>Cadastre-se</Link>
+        <Text mt={1} fontSize={16}>primeira vez? 
+          <Link to="/registration" style={{ color: '#E26A2C' }}>
+            Cadastre-se
+          </Link>
         </Text>
+
       </Flex>
     </Flex>
   );

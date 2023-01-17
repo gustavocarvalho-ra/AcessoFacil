@@ -5,7 +5,6 @@ import { HeaderLinkBack } from '../../components/headerLinkBack';
 import { useGetPhotoNewQrCode } from './useGetQrCode';
 
 export function PageNewQrCode() {
-  // eslint-disable-next-line no-unused-vars
   const { qrCodePhoto } = useGetPhotoNewQrCode();
 
   return (

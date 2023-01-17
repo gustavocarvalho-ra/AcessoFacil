@@ -1,10 +1,5 @@
-/* eslint-disable react/no-unstable-nested-components */
-
-/* eslint-disable react/no-array-index-key */
 import {
-  Box,
-  Center,
-  Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure, Text,
+  Box, Center, Flex, Heading, Icon, Link, Table, TableContainer, Tbody, Th, Thead, Tr, useDisclosure, Text,
 } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import {

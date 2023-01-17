@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   Flex, Icon, Avatar, Input, FormLabel, Heading, VStack, Select,
 } from '@chakra-ui/react';
@@ -31,7 +30,8 @@ export function UserProfile() {
         h={['1700px', '1800px']}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {avatarUser ? <Avatar width="270px" height="270px" src={preview} bg="orange.600" /> 
+        {avatarUser 
+          ? <Avatar width="270px" height="270px" src={preview} bg="orange.600" /> 
           : <Avatar src={photo?.photo} bg="orange.600" width="270px" height="270px" />}
           
         <Input 

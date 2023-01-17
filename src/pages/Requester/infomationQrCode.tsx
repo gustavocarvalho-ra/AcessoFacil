@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable react/no-children-prop */
 import { CopyIcon } from '@chakra-ui/icons';
 import {
   Center, Flex, Heading, Icon, Link, Image, TableContainer, Table, Tbody, Th, Thead, Tr, Td, Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, useDisclosure, 
@@ -23,7 +21,6 @@ interface PropsQrCodeData{
     streetNumber: string;
     civilStatus: string;
   }
-
 }
 
 export function InfomationQrCode() {
@@ -31,15 +28,16 @@ export function InfomationQrCode() {
   const qrCodeInformationString : any = localStorage.getItem('qrCodeInformation');
   const qrCodeInformation = JSON.parse(qrCodeInformationString);
   const name = localStorage.getItem('nameQrCode');
-
   const photo : any = localStorage.getItem('qrCodePhotoId');
   
-  // function handleClick() {
-  //   navigator.clipboard.writeText(JSON.stringify(props));
-  // }
   return (
     <Flex flexDir="column" align="center" w="100%">
-      <Flex h="177px" align="center" justify={['space-evenly', 'center']} flexDir={['column', 'row']}>
+      <Flex 
+        h="177px"
+        align="center"
+        justify={['space-evenly', 'center']}
+        flexDir={['column', 'row']}
+      >
         <Link
           as={LinkRouterDom}
           w="230px"
@@ -171,16 +169,22 @@ export function InfomationQrCode() {
                   );
                 })}
               </Tbody>
-            
             </Table>
           </TableContainer>
 
         </Flex>
 
         <Flex alignItems="flex-end">
-          <Center w="302px" h="302px" bg="orange.600" borderRadius="100%" mt={['70px', 0]}>
+          <Center
+            w="302px"
+            h="302px"
+            bg="orange.600"
+            borderRadius="100%"
+            mt={['70px', 0]}
+          >
             <Image src={photo} h="188px" w="188px" />
           </Center>
+
           <Button onClick={onOpen} position="absolute" bg="transparent">
             <MdOutlineZoomOutMap />
           </Button>
@@ -188,10 +192,12 @@ export function InfomationQrCode() {
 
         <Modal isOpen={isOpen} onClose={onClose} size="full">
           <ModalOverlay />
+
           <ModalContent alignItems="center">
             <ModalHeader fontSize={[20, 30]} color="orange.900" mt="50px">
               Escaneie o Qr Code
             </ModalHeader>
+
             <ModalCloseButton fontSize={18} m={[1, '30px']} />
 
             <ModalBody display="flex" alignItems="center">
@@ -200,9 +206,7 @@ export function InfomationQrCode() {
 
           </ModalContent>
         </Modal>
-      
       </Flex>
-      
     </Flex>
   );
 }

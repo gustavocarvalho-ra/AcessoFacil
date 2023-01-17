@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import {
   Box, Container, Image, InputGroup,
 } from '@chakra-ui/react';
@@ -29,8 +28,12 @@ export function SendDataQrCode() {
         centerContent
         onSubmit={handleSubmit(onSubmit)}
       >
-
-        <InputGroup w={['300px', '400px']} mb={['100px', '90px']} flexDir="column" alignItems="center">
+        <InputGroup 
+          w={['300px', '400px']}
+          mb={['100px', '90px']}
+          flexDir="column"
+          alignItems="center"
+        >
           {data?.map((item, index) => {
             const value = (item: string | number) => {
               if (item === 'name') {
@@ -89,14 +92,20 @@ export function SendDataQrCode() {
 
             const onChangeValue = (e: ChangeEvent<HTMLInputElement>, index: number) => {
               documentsValues[index] = `${item}:${e.target.value}`;
-
               if (!documentsValues.includes(documentsValues[index])) {
                 documentsValues.push(documentsValues[index]);
               }
             };
             
             return (
-              <InputQrCode key={item} defaultValue={value(item)} type="text" label={label(item)} id={`documentsValue-${index + 1}`} onChange={(e) => onChangeValue(e, index)} />
+              <InputQrCode 
+                key={item}
+                defaultValue={value(item)}
+                type="text"
+                label={label(item)}
+                id={`documentsValue-${index + 1}`}
+                onChange={(e) => onChangeValue(e, index)} 
+              />
             );
           })}
         </InputGroup>
@@ -105,9 +114,12 @@ export function SendDataQrCode() {
       </Container>
      
       <Box as="footer" w="100%" position="fixed" bottom={0} zIndex="-1">
-        <Image alt="wave" w="100%" src=" https://capsule-render.vercel.app/api?type=waving&color=9D5C0D&height=120&section=footer" />
+        <Image
+          alt="wave"
+          w="100%"
+          src="https://capsule-render.vercel.app/api?type=waving&color=9D5C0D&height=120&section=footer" 
+        />
       </Box>
     </Box>
-    
   );
 }

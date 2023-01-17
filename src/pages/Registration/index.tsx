@@ -48,8 +48,6 @@ export function Registration() {
       });
       navigate('/');
     } catch (err: any) {
-      console.log();
-      
       toast({
         title: err.request.response,
         status: 'error',
@@ -83,8 +81,18 @@ export function Registration() {
       >
         <SimpleGrid columns={[0, 2]} spacing={7} mb={8}>
           
-          <Input type="text" label="nome completo" {...register('name')} errors={errors.name} />
-          <Input type="email" label="email" {...register('email')} errors={errors.email} />
+          <Input
+            type="text"
+            label="nome completo"
+            {...register('name')}
+            errors={errors.name} 
+          />
+          <Input
+            type="email"
+            label="email"
+            {...register('email')}
+            errors={errors.email} 
+          />
           <Input 
             type="password"
             label="senha" 

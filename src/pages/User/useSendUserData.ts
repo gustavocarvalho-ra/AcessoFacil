@@ -26,8 +26,6 @@ export function useSendUserData() {
   const documentsValues: string[] = [];
   
   const onSubmit: SubmitHandler<Inputs> = async () => {
-    // console.log(qrId);
-    
     try {
       const response = await api.post('/qrcode/relate', { qrId, documentsValues }, {
         headers: {

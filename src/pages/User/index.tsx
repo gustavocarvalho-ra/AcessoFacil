@@ -31,7 +31,14 @@ export function UserHome() {
 
   return (
     <Flex align="center" flexDir="column" w="100%">
-      <Flex as="header" align="center" justify="flex-end" pr={['15px', '65px']} h="110px" w="100%">
+      <Flex
+        as="header"
+        align="center"
+        justify="flex-end"
+        pr={['15px', '65px']}
+        h="110px"
+        w="100%"
+      >
         <Menu>
           <MenuButton
             as={motion.button}
@@ -40,9 +47,7 @@ export function UserHome() {
             _active={{ bg: 'transparent' }}
           >
             <ChevronDownIcon w="25px" h="25px" mt="14px" mr="12px" />
-
             <Avatar src={photo?.photo} bg="orange.600" />
-
           </MenuButton>
 
           <MenuList
@@ -67,6 +72,7 @@ export function UserHome() {
           </MenuList>
         </Menu>
       </Flex>
+
       <Flex minH="80vh" h="100%" align="center">
         <Center
           onClick={onOpen}
@@ -95,6 +101,7 @@ export function UserHome() {
 
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
+
           <ModalContent borderRadius={16} w={['280px', '100%']}>
             <ModalHeader textAlign="center" mt="40px">Aponte a câmera para o Qr Code</ModalHeader>
             <Flex alignItems="center" flexDir="column">
@@ -102,12 +109,12 @@ export function UserHome() {
             </Flex>
       
             <ModalCloseButton _hover={{ color: 'orange' }} />
+
             <ModalBody>
               <ScannerQrCode />
-             
             </ModalBody>
-
           </ModalContent>
+          
         </Modal>
       </Flex>
       

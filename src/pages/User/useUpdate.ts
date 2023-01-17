@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-/* eslint-disable no-unused-expressions */
 import { useToast } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -90,7 +89,6 @@ export function useUpdate() {
 
     try {
       FilePhoto();
-
       const response = await api.post('./user', inputData, {
         headers: {
           Authorization: `Bearer ${storageData}`, 
@@ -108,8 +106,6 @@ export function useUpdate() {
       return response.data;
     } catch (err: any) {
       const messageError = err.request.response;
-      console.log(messageError);
-      
       toast({
         title: messageError.slice(1, 30),
         variant: 'left-accent',
@@ -117,8 +113,8 @@ export function useUpdate() {
         status: 'error',
         duration: 1700,
         isClosable: true,
-
       });
+
       console.log('Error trying to search for this category!');
     }
   };

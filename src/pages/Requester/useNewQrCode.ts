@@ -36,7 +36,6 @@ export function useNewQrCode() {
     try {
       const qrCode = { nameQrCode, documentsValues };
       const newQrCode = { qrCode };
-      
       const { data } = await api.post('/qrcode', newQrCode, {
         headers: {
           Authorization: `Bearer ${storageData}`,
