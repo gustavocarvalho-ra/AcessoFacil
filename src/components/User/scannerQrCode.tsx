@@ -19,11 +19,7 @@ export function ScannerQrCode() {
       navigate('data-qrcode');
     }
   };
-
-  // const seila = (colorScheme) => {
-  //  colorScheme 'green';
-  // };
-
+  
   return (
     <Flex flexDir="column" align="center">
       <QrReader

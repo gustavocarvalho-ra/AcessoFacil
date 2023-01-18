@@ -154,7 +154,7 @@ export function InfomationQrCode() {
                   return (
                     <Tr>
                       {!item.documents?.name ? null : <Td textAlign="center">{item.documents?.name}</Td>}
-                      {!item.documents?.cpf ? null : <Td textAlign="center">{item.documents?.cpf}a</Td>}
+                      {!item.documents?.cpf ? null : <Td textAlign="center">{item.documents?.cpf}</Td>}
                       {!item.documents?.rg ? null : <Td textAlign="center">{item.documents?.rg}</Td>}
                       {!item.documents?.dataEmail ? null : <Td textAlign="center">{item.documents?.dataEmail}</Td>}
                       {!item.documents?.phoneNumber ? null : <Td textAlign="center">{item.documents?.phoneNumber}</Td>}
