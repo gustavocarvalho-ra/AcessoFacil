@@ -37,27 +37,27 @@ export function SendDataQrCode() {
           {data?.map((item, index) => {
             const value = (item: string | number) => {
               if (item === 'name') {
-                return userData?.user.name;
+                return userData?.user?.name;
               } if (item === 'cpf') {
-                return userData?.user.cpf;
+                return userData?.user?.cpf;
               } if (item === 'rg') {
-                return userData?.user.rg;
+                return userData?.user?.rg;
               } if (item === 'dataEmail') {
-                return userData?.user.dataEmail;
+                return userData?.user?.dataEmail;
               } if (item === 'phoneNumber') {
-                return userData?.user.phoneNumber;
+                return userData?.user?.phoneNumber;
               } if (item === 'birthDate') {
-                return userData?.user.birthDate;
+                return userData?.user?.birthDate;
               } if (item === 'nationality') {
-                return userData?.user.nationality;
+                return userData?.user?.nationality;
               } if (item === 'cnh') {
-                return userData?.user.cnh;
+                return userData?.user?.cnh;
               } if (item === 'cep') {
-                return userData?.user.cep;
+                return userData?.user?.cep;
               } if (item === 'streetNumber') {
-                return userData?.user.streetNumber;
+                return userData?.user?.streetNumber;
               } if (item === 'civilStatus') {
-                return userData?.user.civilStatus;
+                return userData?.user?.civilStatus;
               }
               return '';
             };
