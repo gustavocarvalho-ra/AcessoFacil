@@ -14,12 +14,22 @@ export function ScannerQrCode() {
 
   const navigate = useNavigate();
 
+  const closeCam = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: true,
+    });
+    // the rest of the cleanup code
+    window.location.reload();
+  };
+
   const handleSendButton = (text : string) => {
     if (text === 'enviar') {
+      closeCam();
       navigate('data-qrcode');
     }
   };
-  
+ 
   return (
     <Flex flexDir="column" align="center">
       <QrReader
