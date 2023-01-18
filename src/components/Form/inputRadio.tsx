@@ -14,12 +14,25 @@ const InputRadio: ForwardRefRenderFunction<HTMLInputElement, InputRadioProps> = 
     <RadioGroup defaultValue="2" colorScheme="blackAlpha" size="lg">
       <Stack spacing={5} direction="column">
         <Text fontSize={18} fontWeight="regular">Você é um:</Text>
-        <Radio value="usuario" css={{ padding: '8px', borderRadius: '3px' }} {...rest} ref={ref}>
+
+        <Radio 
+          value="usuario"
+          css={{ padding: '8px', borderRadius: '3px' }}
+          {...rest}
+          ref={ref}
+        >
           <Text fontWeight="medium" fontSize={21}>Usuário</Text>
         </Radio>
-        <Radio value="solicitante" css={{ padding: '8px', borderRadius: '3px' }} {...rest} ref={ref}>
+
+        <Radio 
+          value="solicitante"
+          css={{ padding: '8px', borderRadius: '3px' }}
+          {...rest}
+          ref={ref}
+        >
           <Text fontWeight="medium" fontSize={21}>Solicitante</Text>
         </Radio>
+        
         {!!errors && <FormErrorMessage>{errors.message}</FormErrorMessage>}
       </Stack>
     </RadioGroup>
