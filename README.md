@@ -1,6 +1,6 @@
 # Acesso Fácil
 
-O Acesso Fácil é uma aplicação com intuito de facilitar o acesso das pessoas a lugares onde os dados precisam ser informados, como hotéis, clínicas médicas, prédios comerciais, etc. Também facilita para os estabelecimentos, pois a aplicação ajuda a passagem dos dados do usuário para o estabelecimento, sem que seja necessário que a pessoa fale os dados um por um. 
+### O Acesso Fácil é uma aplicação com intuito de facilitar o acesso das pessoas a lugares onde os dados precisam ser informados, como hotéis, clínicas médicas, prédios comerciais, etc. Também facilita para os estabelecimentos, pois a aplicação ajuda a passagem dos dados do usuário para o estabelecimento, sem que seja necessário que a pessoa fale os dados um por um. 
 
 ##
 
